@@ -1,0 +1,272 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding-top: 100px; /* Compensate for fixed navbar */
+  overflow-x: hidden;
+}
+
+/* Container wraps logo and navbar */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1000;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  padding: 20px 0;
+  z-index: 999;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Logo */
+.mcdlogo img {
+  width: 100px;
+  height: auto;
+  transition: transform 0.3s;
+}
+.mcdlogo img:hover {
+  transform: scale(1.2);
+}
+
+/* Navigation links */
+.navlinks ul {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+.navlinks li {
+  display: inline;
+}
+.navlinks a {
+  text-decoration: none;
+  color: #FFCC00;
+  font-weight: bold;
+  font-size: 20px;
+  transition: color 0.3s;
+  padding: 10px;
+}
+.navlinks a:hover {
+  color: red;
+  text-decoration: overline;
+}
+.navlinks a:active {
+  color: #000;
+  transform: scale(0.9);
+}
+.navlinks a:focus {
+  text-decoration: overline;
+  outline: none;
+}
+
+/* Auth and user */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cart-icon {
+  position: relative;
+  font-size: 1.2rem;
+  color: #FF5C00;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.cart-icon:hover {
+  background-color: rgba(255, 92, 0, 0.1);
+  transform: scale(1.1);
+}
+
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #e4002b;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.login-btn,
+.signup-btn {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.login-btn {
+  color: #333;
+  background: transparent;
+  border: 1px solid #ddd;
+}
+
+.login-btn:hover {
+  background-color: #f5f5f5;
+  border-color: #ccc;
+}
+
+.signup-btn {
+  color: white;
+  background-color: #FF5C00;
+  border: 1px solid #FF5C00;
+}
+
+.signup-btn:hover {
+  background-color: #E05000;
+  border-color: #E05000;
+}
+
+.user-menu {
+  position: relative;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.user-info:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.user-info svg {
+  color: #FF5C00;
+}
+
+.user-info span {
+  color: #333;
+  font-weight: 600;
+}
+
+/* Dropdown */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem;
+  min-width: 150px;
+  display: none;
+  z-index: 1001;
+  flex-direction: column;
+}
+
+.user-menu:hover .dropdown-menu {
+  display: flex;
+}
+
+.dropdown-menu a,
+.dropdown-menu button {
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: #333;
+  font-size: 0.9rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 4px;
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu button:hover {
+  background-color: #f5f5f5;
+  color: #FF5C00;
+}
+
+.dropdown-menu button {
+  color: #d32f2f;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .navlinks ul {
+    gap: 20px;
+  }
+  .navlinks a {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .navlinks {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .navlinks ul {
+    justify-content: space-around;
+    gap: 10px;
+  }
+
+  .navlinks a {
+    font-size: 14px;
+    padding: 6px;
+  }
+
+  .auth-links {
+    gap: 0.5rem;
+  }
+
+  .login-btn,
+  .signup-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-links {
+    display: none;
+  }
+
+  .user-info span {
+    display: none;
+  }
+}

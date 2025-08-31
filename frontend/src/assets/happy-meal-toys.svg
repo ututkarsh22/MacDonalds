@@ -1,0 +1,188 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" width="800" height="200">
+  <style>
+    .toy-color-1 { fill: #3498db; }
+    .toy-color-2 { fill: #2ECC71; }
+    .toy-color-3 { fill: #9B59B6; }
+    .toy-color-4 { fill: #E74C3C; }
+    .toy-color-5 { fill: #F1C40F; }
+    .toy-color-6 { fill: #1ABC9C; }
+    .toy-bg { fill: #FFFFFF; }
+    .toy-outline { stroke: #333333; stroke-width: 2; fill: none; }
+    .toy-name { font-family: Arial, sans-serif; font-size: 14px; text-anchor: middle; }
+  </style>
+  
+  <!-- Background -->
+  <rect width="800" height="200" fill="#F8F9FA" rx="10" ry="10" />
+  
+  <!-- Toy 1: Superhero -->
+  <g transform="translate(100, 100)">
+    <circle class="toy-bg" cx="0" cy="0" r="50" />
+    <circle class="toy-outline" cx="0" cy="0" r="50" />
+    
+    <!-- Superhero Figure -->
+    <g transform="translate(0, -5) scale(0.8)">
+      <!-- Head -->
+      <circle class="toy-color-1" cx="0" cy="-20" r="15" />
+      
+      <!-- Mask -->
+      <path d="M-10,-25 L-5,-20 L5,-20 L10,-25" stroke="#FFFFFF" stroke-width="2" fill="none" />
+      
+      <!-- Eyes -->
+      <circle fill="white" cx="-5" cy="-20" r="3" />
+      <circle fill="white" cx="5" cy="-20" r="3" />
+      
+      <!-- Body -->
+      <rect class="toy-color-1" x="-12" y="-5" width="24" height="30" rx="2" ry="2" />
+      
+      <!-- Cape -->
+      <path d="M0,0 L-20,30 L20,30 Z" class="toy-color-4" />
+      
+      <!-- Arms -->
+      <rect class="toy-color-1" x="-25" y="0" width="13" height="5" rx="2" ry="2" transform="rotate(-20)" />
+      <rect class="toy-color-1" x="12" y="0" width="13" height="5" rx="2" ry="2" transform="rotate(20)" />
+      
+      <!-- Legs -->
+      <rect class="toy-color-1" x="-10" y="25" width="7" height="15" rx="2" ry="2" />
+      <rect class="toy-color-1" x="3" y="25" width="7" height="15" rx="2" ry="2" />
+    </g>
+    
+    <text class="toy-name" x="0" y="70">Superhero</text>
+  </g>
+  
+  <!-- Toy 2: Space Explorer -->
+  <g transform="translate(250, 100)">
+    <circle class="toy-bg" cx="0" cy="0" r="50" />
+    <circle class="toy-outline" cx="0" cy="0" r="50" />
+    
+    <!-- Space Explorer Figure -->
+    <g transform="translate(0, -5) scale(0.8)">
+      <!-- Helmet -->
+      <circle class="toy-color-2" cx="0" cy="-20" r="18" />
+      <circle fill="#D6EAF8" cx="0" cy="-20" r="12" />
+      
+      <!-- Face -->
+      <circle fill="#FFD700" cx="0" cy="-20" r="8" />
+      <circle fill="black" cx="-3" cy="-22" r="1" />
+      <circle fill="black" cx="3" cy="-22" r="1" />
+      <path d="M-3,-17 Q0,-15 3,-17" stroke="black" stroke-width="1" fill="none" />
+      
+      <!-- Body -->
+      <rect class="toy-color-2" x="-15" y="-2" width="30" height="25" rx="5" ry="5" />
+      
+      <!-- Arms -->
+      <rect class="toy-color-2" x="-25" y="0" width="10" height="8" rx="4" ry="4" />
+      <rect class="toy-color-2" x="15" y="0" width="10" height="8" rx="4" ry="4" />
+      
+      <!-- Legs -->
+      <rect class="toy-color-2" x="-10" y="23" width="8" height="15" rx="2" ry="2" />
+      <rect class="toy-color-2" x="2" y="23" width="8" height="15" rx="2" ry="2" />
+      
+      <!-- Oxygen Tank -->
+      <rect class="toy-color-6" x="-8" y="-2" width="16" height="5" rx="2" ry="2" />
+    </g>
+    
+    <text class="toy-name" x="0" y="70">Space Explorer</text>
+  </g>
+  
+  <!-- Toy 3: Princess -->
+  <g transform="translate(400, 100)">
+    <circle class="toy-bg" cx="0" cy="0" r="50" />
+    <circle class="toy-outline" cx="0" cy="0" r="50" />
+    
+    <!-- Princess Figure -->
+    <g transform="translate(0, -5) scale(0.8)">
+      <!-- Crown -->
+      <path d="M-10,-40 L-5,-30 L0,-40 L5,-30 L10,-40 L10,-30 L-10,-30 Z" class="toy-color-5" />
+      
+      <!-- Head -->
+      <circle class="toy-color-3" cx="0" cy="-20" r="12" />
+      
+      <!-- Hair -->
+      <path d="M-12,-20 Q-15,-10 -12,0 L12,0 Q15,-10 12,-20 Z" fill="#8E44AD" />
+      
+      <!-- Face -->
+      <circle fill="#FFD700" cx="-3" cy="-22" r="2" />
+      <circle fill="#FFD700" cx="3" cy="-22" r="2" />
+      <path d="M-3,-17 Q0,-15 3,-17" stroke="#FFD700" stroke-width="1" fill="none" />
+      
+      <!-- Dress -->
+      <path d="M-15,0 Q-20,30 0,40 Q20,30 15,0 Z" class="toy-color-3" />
+      
+      <!-- Arms -->
+      <rect class="toy-color-3" x="-20" y="5" width="10" height="5" rx="2" ry="2" transform="rotate(-20)" />
+      <rect class="toy-color-3" x="10" y="5" width="10" height="5" rx="2" ry="2" transform="rotate(20)" />
+    </g>
+    
+    <text class="toy-name" x="0" y="70">Princess</text>
+  </g>
+  
+  <!-- Toy 4: Race Car -->
+  <g transform="translate(550, 100)">
+    <circle class="toy-bg" cx="0" cy="0" r="50" />
+    <circle class="toy-outline" cx="0" cy="0" r="50" />
+    
+    <!-- Race Car -->
+    <g transform="translate(0, 0) scale(0.8)">
+      <!-- Car Body -->
+      <rect class="toy-color-4" x="-25" y="-10" width="50" height="20" rx="5" ry="5" />
+      
+      <!-- Top -->
+      <rect class="toy-color-4" x="-15" y="-20" width="30" height="10" rx="3" ry="3" />
+      
+      <!-- Windows -->
+      <rect fill="#D6EAF8" x="-10" y="-18" width="20" height="6" rx="1" ry="1" />
+      
+      <!-- Wheels -->
+      <circle fill="#333" cx="-15" cy="15" r="8" />
+      <circle fill="#333" cx="15" cy="15" r="8" />
+      <circle fill="#999" cx="-15" cy="15" r="3" />
+      <circle fill="#999" cx="15" cy="15" r="3" />
+      
+      <!-- Headlights -->
+      <rect fill="#F9E79F" x="-25" y="-5" width="3" height="5" rx="1" ry="1" />
+      <rect fill="#F9E79F" x="22" y="-5" width="3" height="5" rx="1" ry="1" />
+      
+      <!-- Racing Stripes -->
+      <rect fill="white" x="-20" y="-15" width="40" height="3" />
+    </g>
+    
+    <text class="toy-name" x="0" y="70">Race Car</text>
+  </g>
+  
+  <!-- Toy 5: Dinosaur -->
+  <g transform="translate(700, 100)">
+    <circle class="toy-bg" cx="0" cy="0" r="50" />
+    <circle class="toy-outline" cx="0" cy="0" r="50" />
+    
+    <!-- Dinosaur -->
+    <g transform="translate(0, 0) scale(0.7)">
+      <!-- Body -->
+      <ellipse class="toy-color-6" cx="0" cy="0" rx="25" ry="15" />
+      
+      <!-- Neck -->
+      <path d="M15,-5 Q25,-25 15,-35" stroke="#1ABC9C" stroke-width="10" fill="none" />
+      
+      <!-- Head -->
+      <ellipse class="toy-color-6" cx="15" cy="-35" rx="12" ry="8" />
+      
+      <!-- Eye -->
+      <circle fill="white" cx="20" cy="-38" r="3" />
+      <circle fill="black" cx="20" cy="-38" r="1" />
+      
+      <!-- Mouth -->
+      <path d="M15,-32 L25,-30" stroke="#333" stroke-width="1" fill="none" />
+      
+      <!-- Tail -->
+      <path d="M-25,0 Q-40,10 -45,-5" stroke="#1ABC9C" stroke-width="10" fill="none" />
+      
+      <!-- Legs -->
+      <rect class="toy-color-6" x="-15" y="10" width="8" height="15" rx="2" ry="2" />
+      <rect class="toy-color-6" x="5" y="10" width="8" height="15" rx="2" ry="2" />
+      
+      <!-- Spikes -->
+      <path d="M-10,-12 L-5,-20 L0,-12 L5,-20 L10,-12" fill="none" stroke="#1ABC9C" stroke-width="2" />
+    </g>
+    
+    <text class="toy-name" x="0" y="70">Dinosaur</text>
+  </g>
+</svg>

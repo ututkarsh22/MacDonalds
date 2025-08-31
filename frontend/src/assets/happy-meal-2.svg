@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="200" height="200">
+  <style>
+    .primary-color { fill: #FF5C00; }
+    .accent-color { fill: #FFCC00; }
+    .burger-color { fill: #8B4513; }
+    .bun-color { fill: #E67E22; }
+    .fries-color { fill: #F1C40F; }
+    .drink-color { fill: #3498db; }
+    .straw-color { fill: #E74C3C; }
+  </style>
+  
+  <!-- Background Circle -->
+  <circle cx="256" cy="256" r="200" fill="#f8f9fa" />
+  
+  <!-- Family Combo Text -->
+  <text x="256" y="120" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#FF5C00">Family Combo</text>
+  
+  <!-- Burger 1 -->
+  <g transform="translate(150, 200) scale(0.8)">
+    <ellipse class="bun-color" cx="0" cy="-15" rx="40" ry="15" />
+    <rect class="burger-color" x="-40" y="-10" width="80" height="10" />
+    <rect class="accent-color" x="-40" y="0" width="80" height="5" />
+    <ellipse class="bun-color" cx="0" cy="15" rx="40" ry="15" />
+  </g>
+  
+  <!-- Burger 2 -->
+  <g transform="translate(250, 200) scale(0.8)">
+    <ellipse class="bun-color" cx="0" cy="-15" rx="40" ry="15" />
+    <rect class="burger-color" x="-40" y="-10" width="80" height="10" />
+    <rect class="accent-color" x="-40" y="0" width="80" height="5" />
+    <ellipse class="bun-color" cx="0" cy="15" rx="40" ry="15" />
+  </g>
+  
+  <!-- Fries 1 -->
+  <g transform="translate(180, 280)">
+    <rect class="primary-color" x="-20" y="-30" width="40" height="30" />
+    <rect class="accent-color" x="-20" y="-40" width="40" height="10" />
+    <rect class="fries-color" x="-15" y="-60" width="5" height="30" />
+    <rect class="fries-color" x="-5" y="-65" width="5" height="35" />
+    <rect class="fries-color" x="5" y="-60" width="5" height="30" />
+    <rect class="fries-color" x="15" y="-55" width="5" height="25" />
+  </g>
+  
+  <!-- Fries 2 -->
+  <g transform="translate(230, 280)">
+    <rect class="primary-color" x="-20" y="-30" width="40" height="30" />
+    <rect class="accent-color" x="-20" y="-40" width="40" height="10" />
+    <rect class="fries-color" x="-15" y="-60" width="5" height="30" />
+    <rect class="fries-color" x="-5" y="-65" width="5" height="35" />
+    <rect class="fries-color" x="5" y="-60" width="5" height="30" />
+    <rect class="fries-color" x="15" y="-55" width="5" height="25" />
+  </g>
+  
+  <!-- Drink 1 -->
+  <g transform="translate(300, 280)">
+    <path class="drink-color" d="M-15,-40 L-20,0 L20,0 L15,-40 Z" />
+    <rect class="primary-color" x="-25" y="0" width="50" height="10" />
+    <path class="straw-color" d="M0,-60 L0,-40 L5,-40 L5,-60 Z" />
+  </g>
+  
+  <!-- Drink 2 -->
+  <g transform="translate(350, 280)">
+    <path class="drink-color" d="M-15,-40 L-20,0 L20,0 L15,-40 Z" />
+    <rect class="primary-color" x="-25" y="0" width="50" height="10" />
+    <path class="straw-color" d="M0,-60 L0,-40 L5,-40 L5,-60 Z" />
+  </g>
+  
+  <!-- Happy Meal Boxes -->
+  <g transform="translate(150, 350) scale(0.5)">
+    <rect class="primary-color" x="-40" y="-40" width="80" height="80" rx="10" ry="10" />
+    <text x="0" y="10" font-family="Arial" font-size="16" text-anchor="middle" fill="#FFCC00">Happy</text>
+    <text x="0" y="30" font-family="Arial" font-size="16" text-anchor="middle" fill="#FFCC00">Meal</text>
+  </g>
+  
+  <g transform="translate(220, 350) scale(0.5)">
+    <rect class="primary-color" x="-40" y="-40" width="80" height="80" rx="10" ry="10" />
+    <text x="0" y="10" font-family="Arial" font-size="16" text-anchor="middle" fill="#FFCC00">Happy</text>
+    <text x="0" y="30" font-family="Arial" font-size="16" text-anchor="middle" fill="#FFCC00">Meal</text>
+  </g>
+  
+  <!-- McDonald's Arches -->
+  <path class="accent-color" d="M200,400 Q256,350 312,400" stroke-width="8" stroke="#FFCC00" fill="none" />
+</svg>

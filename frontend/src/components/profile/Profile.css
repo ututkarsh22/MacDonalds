@@ -1,0 +1,346 @@
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.profile-container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 5rem auto 3rem;
+  padding: 2.5rem;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  min-height: calc(100vh - 8rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-container.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+  width: 100%;
+  position: relative;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #FF5C00;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 25px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.profile-header h1 {
+  color: #FF5C00;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.profile-avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar-circle {
+  width: 120px;
+  height: 120px;
+  background-color: #FF5C00;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 8px rgba(255, 92, 0, 0.3);
+}
+
+.profile-tabs {
+  display: flex;
+  border-bottom: 2px solid #e0e0e0;
+  margin-bottom: 2.5rem;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+.profile-tabs::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome/Safari */
+}
+
+.profile-tabs button {
+  background: none;
+  border: none;
+  padding: 1.2rem 2rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  position: relative;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.profile-tabs button:hover {
+  color: #FF5C00;
+  background-color: rgba(255, 92, 0, 0.05);
+}
+
+.profile-tabs button.active {
+  color: #FF5C00;
+  font-weight: 600;
+}
+
+.profile-tabs button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #FF5C00;
+  transition: all 0.3s ease;
+}
+
+.profile-content {
+  padding: 1.5rem 0;
+}
+
+.info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.info-header h3 {
+  color: #333;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.edit-button {
+  background-color: transparent;
+  color: #FF5C00;
+  border: 2px solid #FF5C00;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.edit-button:hover {
+  background-color: #FF5C00;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.form-group {
+  margin-bottom: 2rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.8rem;
+  color: #444;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.form-group p {
+  margin: 0;
+  padding: 0.8rem 0;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.form-group small {
+  color: #777;
+  font-size: 0.9rem;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  background-color: #fafafa;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #FF5C00;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 92, 0, 0.1);
+  background-color: #fff;
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.save-button {
+  background-color: #FF5C00;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  margin-top: 1.5rem;
+  width: auto;
+  min-width: 150px;
+}
+
+.save-button:hover {
+  background-color: #E65100;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(230, 81, 0, 0.2);
+}
+
+.password-info {
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.last-updated {
+  color: #777;
+  font-size: 0.95rem;
+  margin-top: 1rem;
+  font-style: italic;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 1.5rem;
+    margin: 5rem 1.5rem 1.5rem;
+    width: auto;
+    border-radius: 0;
+    min-height: calc(100vh - 6.5rem);
+  }
+  
+  .profile-header h1 {
+    font-size: 2rem;
+  }
+  
+  .avatar-circle {
+    width: 100px;
+    height: 100px;
+    font-size: 2.5rem;
+  }
+  
+  .profile-tabs button {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .info-header h3 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-container {
+    padding: 1.25rem;
+    margin: 4rem 0.75rem 1rem;
+    border-radius: 8px;
+  }
+  
+  .profile-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .avatar-circle {
+    width: 80px;
+    height: 80px;
+    font-size: 2rem;
+  }
+  
+  .profile-tabs {
+    flex-direction: column;
+    border-bottom: none;
+    gap: 0.5rem;
+  }
+  
+  .profile-tabs button {
+    text-align: left;
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid #e0e0e0;
+    width: 100%;
+  }
+  
+  .profile-tabs button.active::after {
+    display: none;
+  }
+  
+  .profile-tabs button.active {
+    border-bottom: 2px solid #FF5C00;
+    background-color: rgba(255, 92, 0, 0.05);
+  }
+  
+  .info-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .info-header h3 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .edit-button,
+  .save-button {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+}

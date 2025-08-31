@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="200" height="200">
+  <style>
+    .primary-color { fill: #FF5C00; }
+    .accent-color { fill: #FFCC00; }
+    .box-color { fill: #FF5C00; }
+    .veg-color { fill: #2ECC71; }
+    .bun-color { fill: #E67E22; }
+    .lettuce-color { fill: #2ECC71; }
+    .tomato-color { fill: #E74C3C; }
+    .cheese-color { fill: #F1C40F; }
+    .fries-color { fill: #F1C40F; }
+    .drink-color { fill: #3498db; }
+    .straw-color { fill: #E74C3C; }
+    .leaf-color { fill: #27AE60; }
+  </style>
+  
+  <!-- Background Circle -->
+  <circle cx="256" cy="256" r="200" fill="#f8f9fa" />
+  
+  <!-- Veg Happy Meal Text -->
+  <text x="256" y="100" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#FF5C00">Veg Happy Meal</text>
+  
+  <!-- Veg Symbol -->
+  <g transform="translate(256, 140)">
+    <circle class="veg-color" cx="0" cy="0" r="20" />
+    <text x="0" y="7" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="white">V</text>
+  </g>
+  
+  <!-- Veg Burger -->
+  <g transform="translate(200, 220)">
+    <!-- Top Bun -->
+    <ellipse class="bun-color" cx="0" cy="-25" rx="40" ry="15" />
+    
+    <!-- Lettuce -->
+    <path class="lettuce-color" d="M-40,-20 Q-30,-25 -20,-20 Q-10,-25 0,-20 Q10,-25 20,-20 Q30,-25 40,-20 L40,-15 L-40,-15 Z" />
+    
+    <!-- Tomato -->
+    <rect class="tomato-color" x="-35" y="-15" width="70" height="7" />
+    
+    <!-- Cheese -->
+    <rect class="cheese-color" x="-35" y="-8" width="70" height="5" />
+    
+    <!-- Veg Patty -->
+    <rect class="veg-color" x="-35" y="-3" width="70" height="15" rx="3" ry="3" />
+    
+    <!-- Bottom Bun -->
+    <ellipse class="bun-color" cx="0" cy="25" rx="40" ry="15" />
+  </g>
+  
+  <!-- Fries -->
+  <g transform="translate(300, 220)">
+    <rect class="primary-color" x="-25" y="-30" width="50" height="40" />
+    <rect class="accent-color" x="-25" y="-40" width="50" height="10" />
+    <rect class="fries-color" x="-20" y="-60" width="5" height="30" />
+    <rect class="fries-color" x="-10" y="-65" width="5" height="35" />
+    <rect class="fries-color" x="0" y="-70" width="5" height="40" />
+    <rect class="fries-color" x="10" y="-65" width="5" height="35" />
+    <rect class="fries-color" x="20" y="-60" width="5" height="30" />
+  </g>
+  
+  <!-- Drink -->
+  <g transform="translate(200, 320)">
+    <path class="drink-color" d="M-20,-50 L-25,0 L25,0 L20,-50 Z" />
+    <rect class="primary-color" x="-30" y="0" width="60" height="10" />
+    <path class="straw-color" d="M0,-70 L0,-50 L5,-50 L5,-70 Z" />
+  </g>
+  
+  <!-- Happy Meal Box -->
+  <g transform="translate(320, 320)">
+    <rect class="box-color" x="-40" y="-40" width="80" height="80" rx="10" ry="10" />
+    <text x="0" y="-5" font-family="Arial" font-size="16" text-anchor="middle" fill="#FFCC00">Happy</text>
+    <text x="0" y="15" font-family="Arial" font-size="16" text-anchor="middle" fill="#FFCC00">Meal</text>
+    <text x="0" y="35" font-family="Arial" font-size="12" text-anchor="middle" fill="#FFCC00">VEG</text>
+  </g>
+  
+  <!-- Decorative Leaves -->
+  <g transform="translate(150, 150)">
+    <path class="leaf-color" d="M0,0 Q10,-10 20,0 Q10,10 0,0 Z" />
+  </g>
+  
+  <g transform="translate(350, 150)">
+    <path class="leaf-color" d="M0,0 Q10,-10 20,0 Q10,10 0,0 Z" />
+  </g>
+  
+  <g transform="translate(150, 350)">
+    <path class="leaf-color" d="M0,0 Q10,-10 20,0 Q10,10 0,0 Z" />
+  </g>
+  
+  <g transform="translate(350, 350)">
+    <path class="leaf-color" d="M0,0 Q10,-10 20,0 Q10,10 0,0 Z" />
+  </g>
+  
+  <!-- McDonald's Arches -->
+  <path class="accent-color" d="M200,400 Q256,350 312,400" stroke-width="8" stroke="#FFCC00" fill="none" />
+</svg>

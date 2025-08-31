@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="200" height="200">
+  <style>
+    .primary-color { fill: #FF5C00; }
+    .accent-color { fill: #FFCC00; }
+    .box-color { fill: #FF5C00; }
+    .balloon-color-1 { fill: #3498db; }
+    .balloon-color-2 { fill: #2ECC71; }
+    .balloon-color-3 { fill: #9B59B6; }
+    .balloon-color-4 { fill: #E74C3C; }
+    .balloon-string { fill: none; stroke: #333; stroke-width: 2; }
+    .cake-base { fill: #F1C40F; }
+    .cake-frosting { fill: #E74C3C; }
+    .cake-candle { fill: #3498db; }
+    .cake-flame { fill: #F39C12; }
+  </style>
+  
+  <!-- Background Circle -->
+  <circle cx="256" cy="256" r="200" fill="#f8f9fa" />
+  
+  <!-- Birthday Party Pack Text -->
+  <text x="256" y="100" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#FF5C00">Birthday Party Pack</text>
+  
+  <!-- Happy Meal Boxes (5) -->
+  <g transform="translate(130, 200) scale(0.4)">
+    <rect class="box-color" x="-40" y="-40" width="80" height="80" rx="10" ry="10" />
+    <text x="0" y="10" font-family="Arial" font-size="16" text-anchor="middle" fill="#FFCC00">Happy</text>
+    <text x="0" y="30" font-family="Arial" font-size="16" text-anchor="middle" fill="#FFCC00">Meal</text>
+  </g>
+  
+  <g transform="translate(190, 200) scale(0.4)">
+    <rect class="box-color" x="-40" y="-40" width="80" height="80" rx="10" ry="10" />
+    <text x="0" y="10" font-family="Arial" font-size="16" text-anchor="middle" fill="#FFCC00">Happy</text>
+    <text x="0" y="30" font-family="Arial" font-size="16" text-anchor="middle" fill="#FFCC00">Meal</text>
+  </g>
+  
+  <g transform="translate(250, 200) scale(0.4)">
+    <rect class="box-color" x="-40" y="-40" width="80" height="80" rx="10" ry="10" />
+    <text x="0" y="10" font-family="Arial" font-size="16" text-anchor="middle" fill="#FFCC00">Happy</text>
+    <text x="0" y="30" font-family="Arial" font-size="16" text-anchor="middle" fill="#FFCC00">Meal</text>
+  </g>
+  
+  <g transform="translate(310, 200) scale(0.4)">
+    <rect class="box-color" x="-40" y="-40" width="80" height="80" rx="10" ry="10" />
+    <text x="0" y="10" font-family="Arial" font-size="16" text-anchor="middle" fill="#FFCC00">Happy</text>
+    <text x="0" y="30" font-family="Arial" font-size="16" text-anchor="middle" fill="#FFCC00">Meal</text>
+  </g>
+  
+  <g transform="translate(370, 200) scale(0.4)">
+    <rect class="box-color" x="-40" y="-40" width="80" height="80" rx="10" ry="10" />
+    <text x="0" y="10" font-family="Arial" font-size="16" text-anchor="middle" fill="#FFCC00">Happy</text>
+    <text x="0" y="30" font-family="Arial" font-size="16" text-anchor="middle" fill="#FFCC00">Meal</text>
+  </g>
+  
+  <!-- Birthday Cake -->
+  <g transform="translate(256, 300)">
+    <!-- Cake Base -->
+    <rect class="cake-base" x="-50" y="-30" width="100" height="60" rx="5" ry="5" />
+    
+    <!-- Cake Frosting -->
+    <path class="cake-frosting" d="M-50,-30 Q-40,-40 -30,-30 Q-20,-40 -10,-30 Q0,-40 10,-30 Q20,-40 30,-30 Q40,-40 50,-30" />
+    
+    <!-- Candles -->
+    <rect class="cake-candle" x="-30" y="-40" width="5" height="15" />
+    <ellipse class="cake-flame" cx="-27.5" cy="-45" rx="3" ry="5" />
+    
+    <rect class="cake-candle" x="-10" y="-40" width="5" height="15" />
+    <ellipse class="cake-flame" cx="-7.5" cy="-45" rx="3" ry="5" />
+    
+    <rect class="cake-candle" x="10" y="-40" width="5" height="15" />
+    <ellipse class="cake-flame" cx="12.5" cy="-45" rx="3" ry="5" />
+    
+    <rect class="cake-candle" x="30" y="-40" width="5" height="15" />
+    <ellipse class="cake-flame" cx="32.5" cy="-45" rx="3" ry="5" />
+  </g>
+  
+  <!-- Balloons -->
+  <g transform="translate(150, 150)">
+    <ellipse class="balloon-color-1" cx="0" cy="0" rx="20" ry="25" />
+    <path class="balloon-string" d="M0,25 Q-5,40 -10,60" />
+  </g>
+  
+  <g transform="translate(200, 130)">
+    <ellipse class="balloon-color-2" cx="0" cy="0" rx="20" ry="25" />
+    <path class="balloon-string" d="M0,25 Q5,40 10,60" />
+  </g>
+  
+  <g transform="translate(350, 140)">
+    <ellipse class="balloon-color-3" cx="0" cy="0" rx="20" ry="25" />
+    <path class="balloon-string" d="M0,25 Q-5,40 -10,60" />
+  </g>
+  
+  <g transform="translate(400, 160)">
+    <ellipse class="balloon-color-4" cx="0" cy="0" rx="20" ry="25" />
+    <path class="balloon-string" d="M0,25 Q5,40 10,60" />
+  </g>
+  
+  <!-- Party Hat -->
+  <g transform="translate(256, 400)">
+    <path d="M0,-40 L-30,0 L30,0 Z" fill="#9B59B6" />
+    <ellipse cx="0" cy="0" rx="30" ry="10" fill="#9B59B6" />
+    <path d="M-15,-20 L15,-20" stroke="#FFCC00" stroke-width="3" stroke-linecap="round" />
+    <path d="M-10,-30 L10,-30" stroke="#FFCC00" stroke-width="3" stroke-linecap="round" />
+  </g>
+  
+  <!-- McDonald's Arches -->
+  <path class="accent-color" d="M200,450 Q256,400 312,450" stroke-width="8" stroke="#FFCC00" fill="none" />
+</svg>

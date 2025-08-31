@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="200" height="200">
+  <style>
+    .box-color { fill: #FF5C00; }
+    .accent-color { fill: #FFCC00; }
+    .toy-color { fill: #3498db; }
+    .burger-color { fill: #8B4513; }
+    .lettuce-color { fill: #2ECC71; }
+    .cheese-color { fill: #F1C40F; }
+    .bun-color { fill: #E67E22; }
+  </style>
+  
+  <!-- Happy Meal Box -->
+  <rect class="box-color" x="100" y="150" width="312" height="250" rx="20" ry="20" />
+  
+  <!-- Box Smile -->
+  <path class="accent-color" d="M256,350 Q306,300 356,350" stroke-width="10" stroke="#FFCC00" fill="none" />
+  
+  <!-- Box Eyes -->
+  <circle class="accent-color" cx="200" cy="280" r="20" />
+  <circle class="accent-color" cx="312" cy="280" r="20" />
+  
+  <!-- Box Handle -->
+  <path class="accent-color" d="M150,150 L150,120 L362,120 L362,150" stroke-width="10" stroke="#FFCC00" fill="none" />
+  
+  <!-- Toy Peeking Out -->
+  <circle class="toy-color" cx="400" cy="200" r="30" />
+  <rect class="toy-color" x="370" y="200" width="60" height="40" />
+  
+  <!-- Burger Peeking Out -->
+  <ellipse class="bun-color" cx="120" cy="180" rx="40" ry="20" />
+  <rect class="burger-color" x="100" y="190" width="40" height="10" />
+  <rect class="cheese-color" x="100" y="200" width="40" height="5" />
+  <rect class="lettuce-color" x="100" y="205" width="40" height="5" />
+  <ellipse class="bun-color" cx="120" cy="220" rx="40" ry="20" />
+  
+  <!-- McDonald's Logo -->
+  <text x="256" y="250" font-family="Arial" font-size="24" text-anchor="middle" fill="#FFCC00">Happy Meal</text>
+  <path class="accent-color" d="M220,200 Q256,150 292,200" stroke-width="8" stroke="#FFCC00" fill="none" />
+</svg>

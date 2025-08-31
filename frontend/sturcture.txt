@@ -1,0 +1,70 @@
+McDonaldClone/
+├── .gitignore
+├── Backend/
+│   ├── .env
+│   ├── .gitignore
+│   ├── config/
+│   │   └── db.js
+│   ├── controllers/
+│   │   ├── cartController.js
+│   │   ├── menuController.js
+│   │   └── orderController.js
+│   ├── index.js
+│   ├── models/
+│   │   ├── Cart.js
+│   │   ├── MenuItem.js
+│   │   └── Order.js
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── routes/
+│   │   ├── cartRoutes.js
+│   │   ├── menuRoutes.js
+│   │   └── orderRoutes.js
+│   └── seed/
+│       └── menuItemsSeed.js
+├── README.md
+
+├── frontend/
+│   ├── .env
+│   ├── .gitignore
+│   ├── README.md
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── postcss.config.js
+│   ├── public/
+│   │   ├── favicon.svg
+│   │   └── vite.svg
+│   ├── src/
+│   │   ├── App.jsx
+│   │   ├── assets/
+│   │   │   └── react.svg
+│   │   ├── components/
+│   │   │   ├── cart/
+│   │   │   │   ├── CartItem.jsx
+│   │   │   │   └── CartSummary.jsx
+│   │   │   ├── layout/
+│   │   │   │   ├── Footer.jsx
+│   │   │   │   ├── Header.jsx
+│   │   │   │   └── Layout.jsx
+│   │   │   └── menu/
+│   │   │       ├── CategoryFilter.jsx
+│   │   │       ├── MenuItem.jsx
+│   │   │       └── MenuList.jsx
+│   │   ├── context/
+│   │   │   └── CartContext.jsx
+│   │   ├── index.css
+│   │   ├── main.jsx
+│   │   ├── pages/
+│   │   │   ├── CartPage.jsx
+│   │   │   ├── HomePage.jsx
+│   │   │   ├── MenuPage.jsx
+│   │   │   ├── NotFoundPage.jsx
+│   │   │   ├── OrderConfirmationPage.jsx
+│   │   │   └── OrderHistoryPage.jsx
+│   │   └── services/
+│   │       └── api.js
+│   ├── tailwind.config.js
+│   └── vite.config.js
+└── package.json

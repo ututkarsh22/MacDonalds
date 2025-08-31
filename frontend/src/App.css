@@ -1,0 +1,42 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: black;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;         
+  height: 100vh;
+  background: #fff;
+  text-align: center;         
+  padding: 1rem;
+}
+
+
+.mcd-fries-gif {
+  width: 250px;
+  height: auto;
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.95; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+
+.loading-text {
+  font-size: 1.4rem;
+  color: #e4002b;
+  font-weight: bold;
+  letter-spacing: 1px;
+}

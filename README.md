@@ -1,6 +1,6 @@
 ## McDonalds-Website-Clone 
 
-# This project is a MERN stack McDonald’s website clone built to replicate the online food ordering experience. It allows users to browse the menu, add items to the cart, and place orders. The project demonstrates full-stack development using MongoDB, Express, React, and Node.js, with Mongoose as the ODM for database modeling.
+ This project is a MERN stack McDonald’s website clone built to replicate the online food ordering experience. It allows users to browse the menu, add items to the cart, and place orders. The project demonstrates full-stack development using MongoDB, Express, React, and Node.js, with Mongoose as the ODM for database modeling.
 
 Currently, the app supports login/signup, menu browsing, and cart/order placement. A payment gateway integration is planned for future updates.
 
@@ -63,19 +63,19 @@ User places an order → order stored in database.
 User receives confirmation message.
 
 # 🛠️ Getting Started
-Clone the repo
-git clone https://github.com/yourusername/McDonalds-Website-Clone.git
-cd McDonalds-Website-Clone
+Clone the repo <br>
+git clone https://github.com/ututkarsh22/MacDonalds-.git <br>
+cd MacDonalds <br>
 
-Backend Setup
-cd backend
-npm install
-npm start
+Backend Setup <br>
+cd backend <br>
+npm install <br>
+npm start <br>
 
-Frontend Setup
-cd frontend
-npm install
-npm start
+Frontend Setup <br>
+cd frontend <br>
+npm install <br>
+npm run dev <br>
 
 # Environment Variables
 

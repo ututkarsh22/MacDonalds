@@ -29,7 +29,7 @@ app.use(express.json());
   'http://127.0.0.1:5173',
   'http://127.0.0.1:3000',
   'https://mac-donalds-dun.vercel.app/'
-  ]
+  ];
 
 
 app.use(cors({

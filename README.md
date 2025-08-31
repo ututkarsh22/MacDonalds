@@ -63,19 +63,19 @@ User places an order → order stored in database.
 User receives confirmation message.
 
 # 🛠️ Getting Started
-Clone the repo
-git clone https://github.com/ututkarsh22/MacDonalds-.git
-cd MacDonalds
+Clone the repo <br>
+git clone https://github.com/ututkarsh22/MacDonalds-.git <br>
+cd MacDonalds <br>
 
-Backend Setup
-cd backend
-npm install
-npm start
+Backend Setup <br>
+cd backend <br>
+npm install <br>
+npm start <br>
 
-Frontend Setup
-cd frontend
-npm install
-npm run dev
+Frontend Setup <br>
+cd frontend <br>
+npm install <br>
+npm run dev <br>
 
 # Environment Variables
 

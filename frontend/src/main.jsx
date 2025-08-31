@@ -7,7 +7,7 @@ import { AuthProvider } from './context/AuthContext'
 import { Toaster } from 'react-hot-toast'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+
     <BrowserRouter
       future={{
         v7_startTransition: true,
@@ -19,5 +19,5 @@ createRoot(document.getElementById('root')).render(
         <Toaster position="top-right" />
       </AuthProvider>
     </BrowserRouter>
-  </StrictMode>
+
 )

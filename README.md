@@ -65,7 +65,7 @@ User receives confirmation message.
 # 🛠️ Getting Started
 Clone the repo
 git clone https://github.com/ututkarsh22/MacDonalds-.git
-cd McDonalds
+cd MacDonalds
 
 Backend Setup
 cd backend

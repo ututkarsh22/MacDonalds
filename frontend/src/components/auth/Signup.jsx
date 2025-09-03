@@ -100,7 +100,7 @@ const Signup = () => {
             className="auth-button"
             disabled={loading}
           >
-            Sign Up
+            {loading ? 'Creating Account...' : 'Sign Up'}
           </button>
         </form>
         

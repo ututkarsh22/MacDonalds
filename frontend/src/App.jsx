@@ -44,32 +44,7 @@ function App() {
       .catch((err) => console.error("Failed to fetch menu:", err));
   }, []);
 
-  // if (loading) {
-  //   return (
-  //     <div className="loading-container">
-  //       <div className="fry-animation">
-  //         <div className="fry-box">
-  //           {[...Array(6)].map((_, i) => (
-  //             <div
-  //               key={i}
-  //               className="fry"
-  //               style={{ animationDelay: `${i * 0.2}s` }}
-  //             ></div>
-  //           ))}
-  //         </div>
-  //       </div>
 
-       
-  //       <img
-  //         src={mcdgif}
-  //         alt="McDonald's Fries"
-  //         className="mcd-fries-gif"
-  //       />
-
-  //       <p className="loading-text">Cooking Your Meal...</p>
-  //     </div>
-  //   );
-  // }
 
   return (
     <>

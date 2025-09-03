@@ -300,4 +300,19 @@ const Home = () => {
 
 export default Home;
 
+const mapContainerStyle = {
+  width: "100%",
+  height: "400px",
+  borderRadius: "12px",
+};
 
+const center = {
+  lat: 28.6139, // Delhi coordinates
+  lng: 77.209,
+};
+
+const locations = [
+  { lat: 28.6139, lng: 77.209, name: "McDonald's CP" },
+  { lat: 28.6292, lng: 77.2195, name: "McDonald's Mandi House" },
+  { lat: 28.6304, lng: 77.2177, name: "McDonald's ITO" },
+];

@@ -25,6 +25,7 @@ export const AuthProvider = ({ children }) => {
         });
 
         if (response.ok) {
+        
           const userData = await response.json();
           setUser(userData);
         } else {
@@ -49,6 +50,7 @@ export const AuthProvider = ({ children }) => {
 
       const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/auth/register`, {
         method: 'POST',
+        mode : 'cors',
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json'
@@ -57,6 +59,7 @@ export const AuthProvider = ({ children }) => {
       });
 
       const data = await response.json();
+      console.log(data);
 
       if (!response.ok) {
         throw new Error(data.message || 'Registration failed');

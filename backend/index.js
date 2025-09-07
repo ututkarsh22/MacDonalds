@@ -25,12 +25,14 @@ app.use(express.json());
 
 app.use(cors({
   origin: [
- ' http://localhost:5173',
-  'http://localhost:3000',
-  'http://127.0.0.1:5173',
-  'http://127.0.0.1:3000',
-  'https://mac-donalds-dun.vercel.app/'
-  ]
+  'https://mac-donalds-dun.vercel.app/',
+  'mac-donalds-git-main-utkarsh-trivedis-projects-9de56539.vercel.app',
+  'https://mac-donalds-icb1dpleg-utkarsh-trivedis-projects-9de56539.vercel.app/',
+  'http://localhost:5173'          
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
 }));
 app.use(cookieParser());
 

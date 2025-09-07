@@ -25,6 +25,7 @@ export const signupUser = async (userData) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(userData),
   });
+  console.log(BASE_URL)
   return res.json();
 };
 

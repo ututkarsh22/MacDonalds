@@ -187,7 +187,7 @@ export const AuthProvider = ({ children }) => {
     isAuthenticated: !!user
   };
 
-  return <AuthContext.Provider value={value}> {true ? (
+  return <AuthContext.Provider value={value}> {loading ? (
      <Loading/>
     ) : (
       children

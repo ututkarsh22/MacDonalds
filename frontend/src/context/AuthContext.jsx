@@ -1,3 +1,4 @@
+import { Data } from '@react-google-maps/api';
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -97,6 +98,7 @@ export const AuthProvider = ({ children }) => {
         throw new Error(data.message || 'Login failed');
       }
 
+      console.log(data)
       setUser(data.user);
       navigate('/');
       return data;
@@ -128,7 +130,7 @@ export const AuthProvider = ({ children }) => {
       }
 
       setUser(null);
-      navigate('/');
+      navigate('/login');
     } catch (err) {
       setError(err.message);
       console.error('Logout error:', err);

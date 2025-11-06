@@ -58,9 +58,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/happy-meal" element={<HappyMeal />} />
         <Route path="/about" element={<About />} />
           <Route path="/menu" element={<Menu />} />
+        <Route path="/happy-meal" element={<HappyMeal />} />
 
         {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>

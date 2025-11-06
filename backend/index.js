@@ -16,18 +16,25 @@ const paymentRoutes = require('./routes/payments');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.get('/', (req, res) => {
-  res.send('Welcome to the McD Clone API');
-});
+
 
 // Middleware
-app.use(express.json());
-
 app.use(cors({
   origin: ["http://localhost:5173", "https://mac-donalds-dun.vercel.app"],
   credentials: true
 }));
+app.use(express.json());
 app.use(cookieParser());
+
+
+// Use routes
+app.get('/', (req, res) => {
+  res.send('Welcome to the McD Clone API');
+});
+app.use('/api/auth', authRoutes);
+app.use('/api/menu', menuRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/payments', paymentRoutes);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {
@@ -36,12 +43,6 @@ mongoose.connect(process.env.MONGO_URI, {
 })
 .then(() => console.log('MongoDB connected successfully'))
 .catch(err => console.error('MongoDB connection error:', err));
-
-// Use routes
-app.use('/api/auth', authRoutes);
-app.use('/api/menu', menuRoutes);
-app.use('/api/orders', orderRoutes);
-app.use('/api/payments', paymentRoutes);
 
 // Start server
 app.listen(PORT, () => {

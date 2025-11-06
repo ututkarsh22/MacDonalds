@@ -34,7 +34,9 @@ router.post('/register', async (req, res) => {
     
     res.cookie('jwt', token, {
       httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000 // 1 day
+      sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
+      secure: process.env.NODE_ENV === 'production',
+      maxAge: 7 * 24 * 60 * 60 * 1000 // 1 day
     });
 
     res.status(201).json({
@@ -66,15 +68,17 @@ router.post('/login', async (req, res) => {
 
     // Create and send JWT
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
-    
+       
     res.cookie('jwt', token, {
       httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000 // 1 day
+      sameSite: 'None',
+      secure: true,
+      maxAge: 7 * 24 * 60 * 60 * 1000 // 1 day
     });
 
     res.status(200).json({
       message: 'Login successful',
-      user: { id: user._id, name: user.name, email: user.email }
+      user: { id: user._id, name: user.name, email: user.email },
     });
   } catch (error) {
     console.error('Login error:', error);

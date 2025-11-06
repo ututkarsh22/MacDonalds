@@ -1,6 +1,7 @@
 import { Data } from '@react-google-maps/api';
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Loading from "../components/New folder/Loading.jsx"
 
 const AuthContext = createContext();
 
@@ -186,7 +187,11 @@ export const AuthProvider = ({ children }) => {
     isAuthenticated: !!user
   };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={value}> {true ? (
+     <Loading/>
+    ) : (
+      children
+    )}</AuthContext.Provider>;
 };
 
 export default AuthContext;

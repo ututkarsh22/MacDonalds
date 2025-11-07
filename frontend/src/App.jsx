@@ -59,7 +59,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/about" element={<About />} />
-          <Route path="/menu" element={<Menu />} />
+        <Route path="/menu" element={<Menu />} />
         <Route path="/happy-meal" element={<HappyMeal />} />
 
         {/* Protected Routes */}

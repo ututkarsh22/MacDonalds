@@ -10,7 +10,7 @@ export default function AdminCustomers() {
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/admin/customers`, {
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/admin/customers`, {
           method: "GET",
           credentials: "include",
         });

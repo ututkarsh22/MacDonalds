@@ -14,7 +14,7 @@ export default function AdminLogin() {
     setLoading(true);
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/admin/login`, {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/admin/login`, {
         method: "POST",
         credentials: "include", // ✅ allows sending/receiving cookies
         headers: {

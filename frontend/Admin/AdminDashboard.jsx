@@ -8,7 +8,7 @@ export default function AdminDashboard() {
 
  const handleLogout = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/admin/logout`, {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/admin/logout`, {
         method: "POST",
         credentials: "include", // important for cookie-based auth
       });

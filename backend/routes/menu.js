@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const MenuItem = require('../models/MenuItem');
 const { authenticateToken } = require('../middleware/auth');
 
 // Get All Menu Items
@@ -8,7 +7,6 @@ router.get('/', async (req, res) => {
   try {
     const { category, isVegetarian, isPopular } = req.query;
     
-    // Build filter object based on query parameters
     const filter = {};
     
     if (category) {

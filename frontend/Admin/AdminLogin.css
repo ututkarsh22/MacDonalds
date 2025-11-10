@@ -1,0 +1,74 @@
+/* Background wrapper */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height:100vh;
+  background-color: #fff7e6;
+}
+
+.admin-login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height:100vh;
+  background-color: #c7b393ff; /* same as bg-gray-100 */
+  font-family: "Poppins", sans-serif;
+}
+
+/* Login box */
+.admin-login-box {
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  width: 320px;
+}
+
+/* Heading */
+.admin-login-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  text-align: center;
+  color: #333;
+}
+
+/* Input fields */
+.admin-login-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.admin-login-input:focus {
+  border-color: #fbbf24; /* yellow-400 */
+}
+
+/* Button */
+.admin-login-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #facc15; /* yellow-400 */
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.admin-login-button:hover {
+  background-color: #eab308; /* yellow-500 */
+}

@@ -1,11 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const Order = require('../models/Order');
-const MenuItem = require('../models/MenuItem');
 const { authenticateToken } = require('../middleware/auth');
 
 // Create Order
-router.post('/', authenticateToken, async (req, res) => {
+router.post('/create-order', authenticateToken, async (req, res) => {
   try {
     const { orderType, paymentMethod, address, items } = req.body;
     
@@ -78,7 +76,7 @@ router.post('/', authenticateToken, async (req, res) => {
 });
 
 // Get all orders for the current user
-router.get('/', authenticateToken, async (req, res) => {
+router.get('/allOrders', authenticateToken, async (req, res) => {
   try {
     const { status, limit = 10, page = 1 } = req.query;
     const skip = (parseInt(page) - 1) * parseInt(limit);

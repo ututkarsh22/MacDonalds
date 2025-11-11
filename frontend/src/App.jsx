@@ -20,6 +20,7 @@ import About from "./components/pages/about/about.jsx";
 import AdminDashboard from "../Admin/AdminDashboard.jsx";
 import AdminLogin from "../Admin/AdminLogin.jsx";
 import AdminCustomers from "../Admin/AdminCustomers.jsx";
+import AdminProtected from "../Admin/AdminProtected.jsx";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -51,9 +52,11 @@ function App() {
         <Routes>
           {/* Admin Routes */}
           <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin" element={<AdminDashboard />} />
+         <Route element={<AdminProtected/>}>
+          <Route path="/admin" element={<AdminDashboard/>} />
           <Route path="/admin/customers" element={<AdminCustomers />} />
-
+         </Route>
+       
           {/* Public Routes */}
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

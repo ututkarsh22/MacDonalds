@@ -50,12 +50,25 @@ router.post("/logout", (req, res) => {
   res.status(200).json({ message: "Admin logged out successfully" });
 });
 
+router.get("/verify", (req, res) => {
+  const token = req.cookies.adminToken;
+  if (!token) return res.status(401).json({ valid: false });
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    if (!decoded.isAdmin) return res.status(403).json({ valid: false });
+    res.json({ valid: true });
+  } catch (err) {
+    res.status(401).json({ valid: false });
+  }
+});
+
 // ✅ Example protected route (only admin can access)
 router.get("/", verifyAdmin, (req, res) => {
   res.json({ message: "Welcome to the Admin Dashboard", admin: req.admin });
 });
 
-router.get("/customers",async (req, res) => {
+router.get("/customers",verifyAdmin,async (req, res) => {
   try {
     const users = await User.find().select("-password"); // hide passwords
     if(!users)

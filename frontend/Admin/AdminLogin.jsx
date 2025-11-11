@@ -27,8 +27,10 @@ export default function AdminLogin() {
         const errData = await res.json();
         throw new Error(errData.message || "Invalid credentials");
       }
+      console.log("res hai ye",res);
 
       const data = await res.json();
+      console.log(data)
       toast.success("✅ Admin logged in successfully!");
       navigate("/admin");
     } catch (err) {

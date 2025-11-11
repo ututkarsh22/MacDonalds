@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react"; // ✅ FIXED: added useEffect import
 import { useNavigate } from "react-router-dom";
 import "./AdminDashboard.css";
 import toast from "react-hot-toast";
@@ -6,7 +6,8 @@ import toast from "react-hot-toast";
 export default function AdminDashboard() {
   const navigate = useNavigate();
 
- const handleLogout = async () => {
+
+  const handleLogout = async () => {
     try {
       const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/admin/logout`, {
         method: "POST",
@@ -17,8 +18,7 @@ export default function AdminDashboard() {
 
       if (res.ok) {
         toast.success(data.message || "✅ Logged out successfully!");
-        localStorage.removeItem("admin"); // remove frontend flag if you use it
-        // small delay so cookies clear before redirect
+        localStorage.removeItem("admin"); // optional frontend flag
         setTimeout(() => navigate("/admin/login"), 300);
       } else {
         toast.error(data.message || "❌ Logout failed!");
@@ -54,7 +54,9 @@ export default function AdminDashboard() {
         <section className="dashboard-card">
           <h2>👥 Customers</h2>
           <p>View customer details and feedback.</p>
-          <button className="card-btn" onClick={() => navigate("/admin/customers")}>View Customers</button>
+          <button className="card-btn" onClick={() => navigate("/admin/customers")}>
+            View Customers
+          </button>
         </section>
       </main>
     </div>

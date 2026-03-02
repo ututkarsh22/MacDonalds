@@ -21,6 +21,7 @@ import AdminDashboard from "../Admin/AdminDashboard.jsx";
 import AdminLogin from "../Admin/AdminLogin.jsx";
 import AdminCustomers from "../Admin/AdminCustomers.jsx";
 import AdminProtected from "../Admin/AdminProtected.jsx";
+import AdminMenu from "../Admin/AdminMenu.jsx";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -55,6 +56,7 @@ function App() {
          <Route element={<AdminProtected/>}>
           <Route path="/admin" element={<AdminDashboard/>} />
           <Route path="/admin/customers" element={<AdminCustomers />} />
+          <Route path="/admin/menu" element={<AdminMenu />} />
          </Route>
        
           {/* Public Routes */}
@@ -62,11 +64,11 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/about" element={<About />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/happy-meal" element={<HappyMeal />} />
 
           {/* Protected Routes */}
           <Route element={<ProtectedRoute />}>
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/happy-meal" element={<HappyMeal />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/checkout" element={<Checkout />} />

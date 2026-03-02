@@ -102,7 +102,9 @@ export const AuthProvider = ({ children }) => {
 
       console.log(data)
       setUser(data.user);
-      navigate('/');
+      console.log(data.user.email)
+      // data.user.email === import.meta.env.ADMIN ?  navigate("/admin") : navigate("/");
+      navigate("/");
       return data;
     } catch (err) {
       setError(err.message);
@@ -185,7 +187,7 @@ export const AuthProvider = ({ children }) => {
     login,
     logout,
     updateUser,
-    isAuthenticated: !!user
+    isAuthenticated: !! user
   };
 
   return <AuthContext.Provider value={value}> {loading ? (

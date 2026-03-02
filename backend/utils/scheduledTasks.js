@@ -1,4 +1,4 @@
-const cron = require('node-cron');
+import cron from "node-cron";
 
 /**
  * Initialize scheduled tasks
@@ -9,6 +9,4 @@ function initScheduledTasks() {
   console.log('Scheduled tasks initialized');
 }
 
-module.exports = {
-  initScheduledTasks
-};
+export default initScheduledTasks;

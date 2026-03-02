@@ -1,6 +1,7 @@
-const express = require('express');
+import express from "express";
 const router = express.Router();
-const { authenticateToken } = require('../middleware/auth');
+import  authenticateToken  from '../middleware/auth.js';
+import Product from "../models/Products.js";
 
 // Get All Menu Items
 router.get('/', async (req, res) => {
@@ -24,7 +25,7 @@ router.get('/', async (req, res) => {
     // Only show available items
     filter.isAvailable = true;
     
-    const menuItems = await MenuItem.find(filter).sort({ category: 1, name: 1 });
+    const menuItems = await Product.find(filter).sort({ category: 1, name: 1 });
     
     res.status(200).json(menuItems);
   } catch (error) {
@@ -63,7 +64,7 @@ router.get('/categories/all', async (req, res) => {
 // Admin Routes (Protected)
 
 // Create Menu Item (Admin only)
-router.post('/', authenticateToken, async (req, res) => {
+router.post('/create-menu', authenticateToken, async (req, res) => {
   try {
     // Check if user is admin (you would need to add isAdmin field to User model)
     if (!req.user.isAdmin) {
@@ -155,4 +156,4 @@ router.delete('/:id', authenticateToken, async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

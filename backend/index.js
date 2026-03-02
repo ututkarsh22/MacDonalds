@@ -1,18 +1,20 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-require('dotenv').config();
+import express from "express";
+import mongoose  from 'mongoose';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import dotenv from "dotenv"
+dotenv.config();
 
 // Import scheduled tasks
-const { initScheduledTasks } = require('./utils/scheduledTasks');
+import initScheduledTasks from './utils/scheduledTasks.js';
 
 // Import routes
-const authRoutes = require('./routes/auth');
-const menuRoutes = require('./routes/menu');
-const orderRoutes = require('./routes/orders');
-const paymentRoutes = require('./routes/payments');
-const adminRoutes = require('./routes/adminRoutes');
+import authRoutes from './routes/auth.js';
+import menuRoutes from './routes/menu.js';
+import orderRoutes from './routes/orders.js';
+import paymentRoutes from './routes/payments.js';
+import adminRoutes from './routes/adminRoutes.js';
+import cartRoutes from './routes/cart.js'
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -34,6 +36,7 @@ app.get('/', (req, res) => {
 });
 app.use('/api/auth', authRoutes);
 app.use('/api/menu', menuRoutes);
+app.use("/api/cart", cartRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/admin',adminRoutes);

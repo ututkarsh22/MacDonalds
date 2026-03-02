@@ -1,9 +1,8 @@
-const express = require('express');
+import express from "express";
 const router = express.Router();
-const User = require('../models/User');
-const { authenticateToken } = require('../middleware/auth');
-const Razorpay = require('razorpay');
-const crypto = require('crypto');
+import  authenticateToken  from '../middleware/auth.js';
+import Razorpay from 'razorpay';
+import crypto from 'crypto';
 
 // Initialize Razorpay
 const razorpay = new Razorpay({
@@ -117,4 +116,4 @@ router.get('/key', authenticateToken, (req, res) => {
   res.status(200).json({ key: process.env.RAZORPAY_KEY_ID || 'rzp_test_YOUR_KEY_ID' });
 });
 
-module.exports = router;
+export default router;

@@ -2,6 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "this file contains the backend of McDonal's india outlet clone ",
+  "type" : "module",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",

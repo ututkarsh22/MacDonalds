@@ -24,8 +24,8 @@ export const login = async (req, res) => {
     // ✅ Set token in HTTP-only cookie
     res.cookie("adminToken", token, {
       httpOnly: true,
-      secure: false, // set true in production with HTTPS
-      sameSite: "lax",
+      secure: process.env.NODE_ENV === 'production', // set true in production with HTTPS
+      sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
       maxAge: 60 * 60 * 1000, // 1 hour
     });
 
@@ -39,8 +39,8 @@ export const login = async (req, res) => {
 export const logout = (req, res) => {
    res.clearCookie("adminToken", {
     httpOnly: true,
-    secure: false, // same as you used during login
-    sameSite: "lax",
+    secure: process.env.NODE_ENV === 'production', // same as you used during login
+    sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
   });
   res.status(200).json({ message: "Admin logged out successfully" });
 }

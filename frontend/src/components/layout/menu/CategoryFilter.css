@@ -54,10 +54,6 @@
   font-weight: 500;
 }
 
-.veg-icon {
-  font-size: 1.2rem;
-}
-
 /* Responsive styles */
 @media (max-width: 768px) {
   .filter-container {

@@ -1,7 +1,7 @@
 .menu-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 60px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -168,7 +168,7 @@
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 25px;
-  font-weight: 600;
+  font-weight: 600; 
   cursor: pointer;
   transition: background-color 0.3s ease;
 }

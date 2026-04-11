@@ -26,7 +26,6 @@ export const register = async (req,res) => {
     
         await user.save();
     
-        // Create and send JWT
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
         
         res.cookie('jwt', token, {
@@ -124,7 +123,6 @@ export const updatePassword = async (req, res) => {
         return res.status(400).json({ message: 'Current password is incorrect' });
       }
       
-      // Hash new password
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(newPassword, salt);
       user.passwordUpdatedAt = Date.now();
@@ -132,7 +130,6 @@ export const updatePassword = async (req, res) => {
     
     await user.save();
     
-    // Return updated user without password
     const updatedUser = await User.findById(req.user.id).select('-password');
     
     res.status(200).json({

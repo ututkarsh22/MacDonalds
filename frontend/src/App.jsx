@@ -36,7 +36,7 @@ function App() {
   const location = useLocation();
   const [menu, setMenu] = useState([]);
 
-  const hideNavbarRoutes = ["/login", "/signup", "/admin", "/admin/login","/admin/customers"];
+  const hideNavbarRoutes = ["/login", "/signup", "/admin", "/admin/login","/admin/customers","/admin/menu"];
   const hideNavbar = hideNavbarRoutes.includes(location.pathname);
 
   useEffect(() => {

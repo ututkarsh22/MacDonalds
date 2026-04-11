@@ -2,80 +2,44 @@ import express from "express";
 const router = express.Router();
 import  authenticateToken  from '../middleware/auth.js';
 
-// Create Order
-router.post('/create-order', authenticateToken, async (req, res) => {
+// Create Orderimport express from "express";
+
+router.post("/", authenticateToken, async (req, res) => {
   try {
-    const { orderType, paymentMethod, address, items } = req.body;
-    
-    // Validate inputs
-    if (!orderType || !['Dine-In', 'Takeaway'].includes(orderType)) {
-      return res.status(400).json({ message: 'Valid order type is required (Dine-In or Takeaway)' });
+    const { items, orderType, paymentMethod, address } = req.body;
+
+    if (!items || items.length === 0) {
+      return res.status(400).json({ message: "Cart is empty" });
     }
-    
-    if (!paymentMethod || !['Card', 'UPI', 'Cash'].includes(paymentMethod)) {
-      return res.status(400).json({ message: 'Valid payment method is required (Card, UPI, or Cash)' });
-    }
-    
-    if (!items || !Array.isArray(items) || items.length === 0) {
-      return res.status(400).json({ message: 'Order items are required' });
-    }
-    
-    // Calculate order totals
-    let subtotal = 0;
-    const orderItems = [];
-    
-    // Process each item
-    for (const item of items) {
-      const menuItem = await MenuItem.findById(item.menuItemId);
-      if (!menuItem) {
-        return res.status(400).json({ message: `Menu item not found: ${item.menuItemId}` });
-      }
-      
-      const itemTotal = menuItem.price * item.quantity;
-      subtotal += itemTotal;
-      
-      orderItems.push({
-        menuItemId: menuItem._id,
-        name: menuItem.name,
-        quantity: item.quantity,
-        price: menuItem.price,
-        totalPrice: itemTotal,
-        options: item.options || [],
-        specialInstructions: item.specialInstructions || ''
-      });
-    }
-    
-    // Calculate tax and delivery fee
-    const tax = subtotal * 0.18; // 18% tax
-    const deliveryFee = orderType === 'Takeaway' ? 40.00 : 0;
-    const total = subtotal + tax + deliveryFee;
-    
-    // Create new order
-    const order = new Order({
+
+    // ✅ Calculate total from backend (IMPORTANT)
+    const totalAmount = items.reduce((sum, item) => {
+      return sum + item.price * item.quantity;
+    }, 0);
+
+    const order = await Order.create({
       userId: req.user.id,
-      items: orderItems,
-      subtotal,
-      tax,
-      deliveryFee,
-      total,
+      items,
+      totalAmount,
       orderType,
       paymentMethod,
-      address: address || ''
+      address
     });
-    
-    await order.save();
-    
+
     res.status(201).json({
-      message: 'Order created successfully',
+      success: true,
       order
     });
+
   } catch (error) {
-    console.error('Create order error:', error);
-    res.status(500).json({ message: 'Server error' });
+    res.status(500).json({
+      message: "Failed to create order",
+      error: error.message
+    });
   }
 });
 
-// Get all orders for the current user
+
 router.get('/allOrders', authenticateToken, async (req, res) => {
   try {
     const { status, limit = 10, page = 1 } = req.query;

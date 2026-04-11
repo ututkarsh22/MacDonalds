@@ -16,75 +16,66 @@ const Checkout = () => {
   const [address, setAddress] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   
-  // Redirect to login if not authenticated
-  React.useEffect(() => {
-    if (!isAuthenticated) {
-      navigate('/login', { state: { from: '/checkout' } });
-    }
-    
-    // Redirect to menu if cart is empty
-    if (cartItems.length === 0) {
-      toast.error('Your cart is empty');
-      navigate('/menu');
-    }
-  }, [isAuthenticated, cartItems, navigate]);
-  
-  const handlePlaceOrder = async () => {
-    if (cartItems.length === 0) {
-      toast.error('Your cart is empty');
-      return;
-    }
-    
+ const handlePlaceOrder = async () => {
+  if (isLoading) return;
+
+  if (cartItems.length === 0) {
+    toast.error('Your cart is empty');
+    return;
+  }
+
+  if (orderType === 'Takeaway' && !address.trim()) {
+    toast.error('Please enter delivery address');
+    return;
+  }
+
+  try {
+    setIsLoading(true);
+
+    const orderData = {
+      orderType,
+      paymentMethod,
+      address: orderType === 'Takeaway' ? address : '',
+      items: cartItems.map(item => ({
+        menuItemId: item._id,
+        quantity: item.quantity
+      }))
+    };
+
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/orders`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include',
+      body: JSON.stringify(orderData)
+    });
+
+    let data;
     try {
-      setIsLoading(true);
-      
-      // Prepare order data
-      const orderData = {
-        orderType,
-        paymentMethod,
-        address: orderType === 'Takeaway' ? address : '',
-        items: cartItems.map(item => ({
-          menuItemId: item._id,
-          quantity: item.quantity,
-          options: [],
-          specialInstructions: ''
-        }))
-      };
-      
-      // Make API call to create order
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/orders`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        credentials: 'include',
-        body: JSON.stringify(orderData)
-      });
-      
-      const data = await response.json();
-      
-      if (!response.ok) {
-        throw new Error(data.message || 'Failed to place order');
-      }
-      
-      // If payment method is Card or UPI, initiate Razorpay payment
-      if (paymentMethod === 'Card' || paymentMethod === 'UPI') {
-        // Navigate to payment page with order ID
-        navigate(`/payment/${data.order._id}`);
-      } else {
-        // For Cash payment, show success and clear cart
-        toast.success('Order placed successfully!');
-        clearCart();
-        navigate(`/order-success/${data.order._id}`);
-      }
-    } catch (error) {
-      console.error('Order placement error:', error);
-      toast.error(error.message || 'Failed to place order');
-    } finally {
-      setIsLoading(false);
+      data = await response.json();
+    } catch {
+      throw new Error("Invalid server response");
     }
-  };
-  
+
+    if (!response.ok) {
+      throw new Error(data.message || 'Failed to place order');
+    }
+
+    if (paymentMethod === 'Card' || paymentMethod === 'UPI') {
+      navigate(`/payment/${data.order._id}`);
+    } else {
+      toast.success('Order placed successfully!');
+      clearCart();
+      navigate(`/order-success/${data.order._id}`);
+    }
+
+  } catch (error) {
+    toast.error(error.message);
+  } finally {
+    setIsLoading(false);
+  }
+};
   return (
     <div className="checkout-page">
       <div className="checkout-container">

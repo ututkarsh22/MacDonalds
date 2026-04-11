@@ -3,34 +3,50 @@ import Cart from "../models/Cart.js";
 import authMiddleware from "../middleware/auth.js";
 const router = express.Router();
 
-// Save / Update cart
-router.put("/update-cart", authMiddleware, async (req, res) => {
+
+router.put("/add-cart", authMiddleware, async (req, res) => {
   try {
     const userId = req.user.id;
     const { items, total } = req.body;
-  
-    const cart = await Cart.findOneAndUpdate(
-      { userId },
-      { items, total },
-      { upsert: true, new: true }
-    );
-  
-    res.json(cart);
-    
-  } catch (error) {
+
+    let cart = await Cart.findOne({ userId });
+
+    // 🟢 If cart doesn't exist → create
+    if (!cart) {
+      cart = await Cart.create({
+        userId,
+        items,
+        total
+      });
+    } 
+    // 🟢 If cart exists → update
+    else {
+      cart = await Cart.findOneAndUpdate(
+        { userId },
+        { items, total },
+        { new: true }
+      );
+    }
+
     res.json({
-      success : false,
-      message : "Internal server error"
-    })
+      success: true,
+      cart
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Internal server error"
+    });
   }
-  
 });
 
-// Get cart
+
 router.get("/", authMiddleware, async (req, res) => {
   try {
     const userId = req.user.id;
-  
+   console.log(userId);
+
     const cart = await Cart.findOne({ userId });
     res.json(cart || { items: [], total: 0 });
     

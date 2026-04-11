@@ -11,6 +11,7 @@ const MenuList = ({ items, onAddToCart }) => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
+
       {items.length > 0 ? (
         items.map(item => (
           <MenuItem 

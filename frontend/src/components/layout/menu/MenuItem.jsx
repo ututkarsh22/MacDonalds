@@ -12,12 +12,12 @@ const MenuItem = ({ item, onAddToCart }) => {
       whileHover={{ y: -5 }}
     >
       <div className="item-image">
-        <img src={item.image} alt={item.name} />
-        {item.isVegetarian && <span className="veg-badge">🟢</span>}
+        <img src={item.image.url} alt={item.name} />
         {item.isPopular && <span className="popular-badge">Popular</span>}
       </div>
       <div className="item-details">
         <h3>{item.name}</h3>
+        {item.isVegetarian? <span className="veg-icon"></span> :  <span className="non-veg-icon"></span> }
         <p className="item-description">{item.description}</p>
         <div className="item-footer">
           <span className="item-price">₹{item.price}</span>

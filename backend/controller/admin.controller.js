@@ -2,6 +2,9 @@ import express from "express";
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import Product from "../models/Products.js";
+import cloudinary from "../config/cloudinary.js"
+import fs from "fs";
 
 export const login = async (req, res) => {
   try {
@@ -74,4 +77,136 @@ export const customer = async (req, res) => {
    console.error("Error fetching customers:", err.message);
     res.status(500).json({ message: "Server Error" });
   }
+}
+
+
+export const deletingMenu =  async (req, res) => {
+  try {
+    // Check if user is admin
+    if (!req.user.isAdmin) {
+      return res.status(403).json({ message: 'Access denied' });
+    }
+    
+    const menuItem = await MenuItem.findByIdAndDelete(req.params.id);
+    
+    if (!menuItem) {
+      return res.status(404).json({ message: 'Menu item not found' });
+    }
+    
+    res.status(200).json({
+      message: 'Menu item deleted successfully'
+    });
+  } catch (error) {
+    console.error('Delete menu item error:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
+export const updatingMenu = async (req, res) => {
+  try {
+   
+    if (!req.admin.isAdmin) {
+      return res.status(403).json({ message: 'Access denied' });
+    }
+    
+    const menuItem = await Product.findById(req.params.id);
+    
+    if(!menuItem) {
+      return res.status(404).json({ message: 'Menu item not found' });
+    }
+
+
+    if(req.file)
+    {
+      console.log("image dekh rhe :" ,menuItem.image)
+
+     await cloudinary.uploader.destroy(menuItem.image.public_id);
+    
+      const result = await cloudinary.uploader.upload(req.file.path, {folder : "menu_items"});
+      menuItem.image.public_id = result.public_id
+      menuItem.image.url = result.secure_url
+        
+    }
+
+    menuItem.name = req.body.name;
+    menuItem.description = req.body.description;
+    menuItem.price = req.body.price;
+    menuItem.category = req.body.category;
+    menuItem.isVegetarian = req.body.isVegetarian;
+    menuItem.isPopular = req.body.isPopular;
+    menuItem.stock = req.body.stock;
+
+    await menuItem.save();
+    
+    res.status(200).json({
+      message: 'Menu item updated successfully',
+      menuItem
+    });
+  } catch (error) {
+    console.error('Update menu item error:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
+export const createMenu = async (req, res) => {
+  try {
+    
+    
+        if (!req.admin.isAdmin) {
+          return res.status(403).json({ message: 'Access denied' });
+        }
+        if (!req.file) {
+  return res.status(400).json({ message: "Image is required" });
+}
+    const result = await cloudinary.uploader.upload(req.file.path,{folder : "menu_items"});
+    console.log(req.file.path);
+    console.log(result);
+    const { 
+      name, description, price, category,isVegetarian,isPopular,stock     
+    } = req.body;
+    
+    const menuItem = new Product({
+      name,
+      description,
+      price,
+      category,
+      image : {
+        public_id : result.public_id,
+        url : result.secure_url
+      },
+      isPopular,
+      isVegetarian,
+      stock
+    });
+    
+    await menuItem.save();
+    fs.unlinkSync(req.file.path)
+
+    res.status(201).json({
+      message: 'Menu item created successfully',
+      menuItem
+    });
+  } catch (error) {
+    console.error('Create menu item error:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+}
+
+export const getMenu = async(req,res) => {
+
+    try {
+      const product = await Product.find();
+      console.log(product);
+      res.json({
+        success : true,
+        message : "All menu fetched",
+        product
+      })
+    } catch (error) {
+      res.json({
+        success : false,
+        message : "Internal Server Problem"
+      })
+    }
+
 }

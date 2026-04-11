@@ -1,4 +1,12 @@
-/* Reset and global setup */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  --mcd-red: #DB0007;
+  --mcd-yellow: #FFBC0D;
+  --bg-soft: #fcfcfc;
+  --text-main: #222;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,150 +14,122 @@
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: "Poppins", sans-serif;
-  background-color: #fff7e6;
-  color: #333;
-  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-soft);
 }
 
-/* Container */
 .dashboard-container {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(180deg, #fff7e6 0%, #fff4db 100%);
 }
 
-/* Header */
 .dashboard-header {
-  background: linear-gradient(90deg, #ffbc0d 0%, #ffd966 100%);
+  background: white;
+  padding: 1rem 5%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 48px;
-  box-shadow: 0 4px 10px rgba(179, 19, 18, 0.2);
-  border-bottom: 3px solid #b31312;
+  border-bottom: 2px solid #eee;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.m-logo {
+  background: var(--mcd-red);
+  color: var(--mcd-yellow);
+  font-weight: 900;
+  font-size: 1.5rem;
+  padding: 5px 12px;
+  border-radius: 8px;
 }
 
 .dashboard-title {
-  font-size: 1.8rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  color: #b31312;
-  letter-spacing: 0.5px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }
 
+.dashboard-title span {
+  color: var(--mcd-red);
+}
 
-/* Logout Button */
 .logout-btn {
-  background-color: #b31312;
-  color: #fff;
+  background: #f5f5f5;
   border: none;
-  padding: 10px 20px;
-  border-radius: 10px;
+  padding: 8px 18px;
+  border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
-  font-size: 0.95rem;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
+  transition: 0.2s;
 }
 
 .logout-btn:hover {
-  background-color: #8b0f0f;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(179, 19, 18, 0.25);
+  background: #eee;
+  color: var(--mcd-red);
 }
 
-/* Main Content Area */
 .dashboard-main {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 28px;
-  padding: 40px 60px;
-  flex-grow: 1;
-  animation: fadeIn 0.6s ease-in-out;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  padding: 40px 5%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Dashboard Cards */
 .dashboard-card {
-  background-color: #fff;
-  border-radius: 18px;
-  padding: 24px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid #eee;
+  transition: all 0.3s ease;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-top: 6px solid #ffbc0d;
 }
 
 .dashboard-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 20px rgba(255, 188, 13, 0.25);
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+  border-color: var(--mcd-yellow);
 }
 
-/* Card Header */
+.card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
 .dashboard-card h2 {
-  font-size: 1.3rem;
-  color: #b31312;
-  margin-bottom: 12px;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: var(--text-main);
 }
 
-/* Card Content */
 .dashboard-card p {
   font-size: 0.95rem;
-  color: #555;
-  margin-bottom: 24px;
-  line-height: 1.4;
+  color: #666;
+  margin-bottom: 25px;
+  line-height: 1.5;
 }
 
-/* Buttons inside cards */
 .card-btn {
-  background-color: #ffbc0d;
-  color: #fff;
+  width: 100%;
+  padding: 12px;
+  background: var(--mcd-yellow);
   border: none;
   border-radius: 10px;
-  font-weight: 600;
-  padding: 10px 20px;
-  font-size: 0.9rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: 0.2s;
 }
 
 .card-btn:hover {
-  background-color: #eab308;
-  box-shadow: 0 0 10px rgba(255, 188, 13, 0.4);
-  transform: translateY(-2px);
+  background: #f5b000;
+  transform: scale(1.02);
 }
 
-/* Add small animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .dashboard-header {
-    flex-direction: column;
-    gap: 10px;
-    padding: 20px;
-    text-align: center;
-  }
-
-  .dashboard-main {
-    padding: 20px;
-  }
-
-  .logout-btn {
-    width: 100%;
-  }
+@media (max-width: 600px) {
+  .dashboard-main { padding: 20px; }
+  .dashboard-header { padding: 1rem 20px; }
 }

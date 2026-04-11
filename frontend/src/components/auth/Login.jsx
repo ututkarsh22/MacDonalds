@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { motion } from 'framer-motion';
 import toast from 'react-hot-toast';
@@ -11,11 +11,18 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const { login, loading, error } = useAuth();
 
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     
     try {
       await login(email, password);
+      if(email === import.meta.env.VITE_ADMIN && password === import.meta.env.VITE_ADMIN_PASS)
+      {
+        navigate("/admin")
+      }
+      else
+        navigate("/");
       toast.success('Login successful!');
     } catch (err) {
       toast.error(err.message || 'Login failed');

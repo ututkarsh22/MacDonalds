@@ -1,3 +1,18 @@
+
+:root {
+  --mcd-red: #DB0007;
+  --mcd-yellow: #FFBC0D;
+  --bg-grey: #f8f9fa;
+  --text-dark: #292929;
+  --text-light: #6c757d;
+  --success-green: #28a745;
+  --input-bg: #fff;
+  --input-border: #ced4da;
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 8px rgba(0,0,0,0.1);
+  --transition: all 0.2s ease-in-out;
+}
+
 .menu-item {
   background-color: white;
   border-radius: 12px;
@@ -5,6 +20,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
+
 
 .item-image {
   position: relative;
@@ -68,9 +84,54 @@
   text-overflow: ellipsis;
   height: 2.7rem;
 }
+.veg-icon {
+  display : inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--success-green);
+  border-radius: 2px;
+  position: relative;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
 
+.veg-icon::after {
+  content: '';
+  width: 9px;
+  height: 9px;
+  background-color: var(--success-green);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.non-veg-icon{
+  display : inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--mcd-red);
+  border-radius: 2px;
+  position: relative;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.non-veg-icon::after{
+  content: '';
+  width: 9px;
+  height: 9px;
+  background-color: var(--mcd-red);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .item-footer {
   display: flex;
+  gap:15px;
   justify-content: space-between;
   align-items: center;
   margin-top: 0.5rem;

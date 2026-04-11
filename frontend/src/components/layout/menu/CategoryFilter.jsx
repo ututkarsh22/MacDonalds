@@ -27,7 +27,7 @@ const CategoryFilter = ({ categories, selectedCategory, setSelectedCategory, isV
             onChange={() => setIsVegOnly(!isVegOnly)}
           />
           <span className="veg-text">Veg Only</span>
-          <span className="veg-icon">🟢</span>
+          <span className="veg-icon"></span>
         </label>
       </div>
     </div>

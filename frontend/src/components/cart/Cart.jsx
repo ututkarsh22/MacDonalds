@@ -3,6 +3,8 @@ import { useCart } from '../../context/CartContext';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import './Cart.css';
+import toast from 'react-hot-toast';
+import { useEffect } from 'react';
 
 const Cart = ({ isOpen, onClose }) => {
   const { cartItems, cartTotal, incrementQuantity, decrementQuantity, removeFromCart, clearCart } = useCart();
@@ -12,6 +14,8 @@ const Cart = ({ isOpen, onClose }) => {
     onClose();
     navigate('/checkout');
   };
+
+ 
 
   if (!isOpen) return null;
 

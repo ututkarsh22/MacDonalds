@@ -115,3 +115,6 @@ router.get("/key", (req, res) => {
     key: process.env.RAZORPAY_KEY_ID
   });
 });
+
+
+export default router;

@@ -10,7 +10,6 @@ import initScheduledTasks from './utils/scheduledTasks.js';
 import authRoutes from './routes/auth.js';
 import menuRoutes from './routes/menu.js';
 import orderRoutes from './routes/orders.js';
-import paymentRoutes from './routes/payments.js';
 import adminRoutes from './routes/adminRoutes.js';
 import cartRoutes from './routes/cart.js'
 
@@ -46,7 +45,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/menu', menuRoutes);
 app.use("/api/cart", cartRoutes);
 app.use('/api/orders', orderRoutes);
-app.use('/api/payments', paymentRoutes);
+// app.use('/api/payments', paymentRoutes);
 app.use('/api/admin',adminRoutes);
 
 // Connect to MongoDB

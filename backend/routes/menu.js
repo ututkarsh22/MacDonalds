@@ -3,6 +3,15 @@ const router = express.Router();
 import Product from "../models/Products.js";
 
 
+router.get('/categories/all', async (req, res) => {
+  try {
+    const categories = await Product.distinct('category');
+    res.status(200).json(categories);
+  } catch (error) {
+    console.error('Get categories error:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
 router.get('/', async (req, res) => {
   try {
     const { category, isVegetarian, isPopular } = req.query;
@@ -54,15 +63,6 @@ router.get('/:id', async (req, res) => {
 });
 
 
-router.get('/categories/all', async (req, res) => {
-  try {
-    const categories = await Product.distinct('category');
-    res.status(200).json(categories);
-  } catch (error) {
-    console.error('Get categories error:', error);
-    res.status(500).json({ message: 'Server error' });
-  }
-});
 
 
 export default router;

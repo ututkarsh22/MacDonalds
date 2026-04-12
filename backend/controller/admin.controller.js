@@ -5,7 +5,6 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import Product from "../models/Products.js";
 import cloudinary from "../config/cloudinary.js"
-import fs from "fs";
 
 export const login = async (req, res) => {
   try {
@@ -199,7 +198,6 @@ export const createMenu = async (req, res) => {
     });
 
     await menuItem.save();
-    fs.unlinkSync(req.file.path)
 
     res.status(201).json({
       message: 'Menu item created successfully',

@@ -15,7 +15,6 @@ const Menu = () => {
   
   const { addToCart } = useCart();
 
-  // 1. Fetch data from Backend
   useEffect(() => {
     const fetchMenu = async () => {
       try {

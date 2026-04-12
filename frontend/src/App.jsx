@@ -68,6 +68,7 @@ function App() {
           {/* Protected Routes */}
           <Route element={<ProtectedRoute />}>
           <Route path="/menu" element={<Menu />} />
+          
           <Route path="/happy-meal" element={<HappyMeal />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/orders" element={<Orders />} />

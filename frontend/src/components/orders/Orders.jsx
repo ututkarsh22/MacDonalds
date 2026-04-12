@@ -1,347 +1,213 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../../context/AuthContext';
-import { motion } from 'framer-motion';
-import { toast } from 'react-hot-toast';
-import axios from 'axios';
 import './Orders.css';
 
-const Orders = () => {
-  const { user } = useAuth();
+const OrdersList = () => {
   const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [selectedOrder, setSelectedOrder] = useState(null);
-  const [showHelpModal, setShowHelpModal] = useState(false);
-
-  const fetchOrders = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get('/api/orders', {
-        withCredentials: true
-      });
-      setOrders(response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
-    } catch (error) {
-      console.error('Error fetching orders:', error);
-      toast.error('Failed to load orders');
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [pagination, setPagination] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    if (user) {
-      fetchOrders();
-    }
-  }, [user]);
+    const fetchOrders = async () => {
+      try {
+        setIsLoading(true);
+        const res = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/orders/allOrders?page=${currentPage}&limit=10`,
+          { method: 'GET', credentials: 'include' }
+        );
+        if (!res.ok) throw new Error('Failed to fetch orders');
+        const data = await res.json();
+        setOrders(data.orders);
+        setPagination(data.pagination);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchOrders();
+  }, [currentPage]);
 
-  const formatDate = (dateString) => {
-    const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-    return new Date(dateString).toLocaleDateString(undefined, options);
-  };
+  const formatDate = (dateStr) =>
+    new Date(dateStr).toLocaleDateString(undefined, {
+      year: 'numeric', month: 'short', day: 'numeric',
+      hour: '2-digit', minute: '2-digit',
+    });
 
-  const getStatusClass = (status) => {
-    switch (status.toLowerCase()) {
-      case 'completed':
-        return 'status-completed';
-      case 'processing':
-        return 'status-processing';
-      case 'delivered':
-        return 'status-delivered';
-      case 'cancelled':
-        return 'status-cancelled';
-      default:
-        return '';
-    }
-  };
+  if (isLoading) return (
+    <div className="ol-loading">
+      <div className="ol-spinner" />
+      <p>Fetching your orders...</p>
+    </div>
+  );
 
-  const handleOrderClick = (order) => {
-    setSelectedOrder(order);
-  };
-
-  const closeOrderDetails = () => {
-    setSelectedOrder(null);
-  };
-
-  const openHelpModal = () => {
-    setShowHelpModal(true);
-  };
-
-  const closeHelpModal = () => {
-    setShowHelpModal(false);
-  };
-
-  const handleReorder = async (order) => {
-    try {
-      setLoading(true);
-      
-      // Create a new order with the same items and details
-      const response = await axios.post('/api/orders/reorder', 
-        { orderId: order._id },
-        { withCredentials: true }
-      );
-      
-      toast.success('Order placed successfully!');
-      
-      // Refresh orders list
-      fetchOrders();
-      
-      // Close modal
-      closeOrderDetails();
-    } catch (error) {
-      console.error('Error reordering:', error);
-      toast.error('Failed to place order. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  if (loading) {
-    return (
-      <div className="orders-container loading">
-        <div className="spinner"></div>
-        <p>Loading orders...</p>
-      </div>
-    );
-  }
+  if (error) return (
+    <div className="ol-error">
+      <p className="ol-error-emoji">😕</p>
+      <p className="ol-error-title">Something went wrong</p>
+      <p className="ol-error-msg">{error}</p>
+    </div>
+  );
 
   return (
-    <motion.div 
-      className="orders-container"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className="orders-header">
-        <h1>My Orders</h1>
-        <p>View and track your orders</p>
+    <div className="ol-page">
+
+      {/* ── Header ── */}
+      <div className="ol-header">
+        <div className="ol-header-inner">
+          <div>
+            <h1>My Orders</h1>
+            <p>{pagination.total} total orders</p>
+          </div>
+          <span className="ol-header-badge">{pagination.total} Orders</span>
+        </div>
       </div>
 
-      {orders.length === 0 ? (
-        <div className="no-orders">
-          <div className="no-orders-icon">📦</div>
-          <h3>No orders yet</h3>
-          <p>You haven't placed any orders yet. Start ordering your favorite meals!</p>
-        </div>
-      ) : (
-        <div className="orders-list">
-          {orders.map((order) => (
-            <motion.div 
-              key={order._id} 
-              className="order-card"
-              whileHover={{ scale: 1.02 }}
-              onClick={() => handleOrderClick(order)}
+      {/* ── List ── */}
+      <div className="ol-list">
+        {orders.length === 0 ? (
+          <div className="ol-empty">
+            <p className="ol-empty-emoji">🛒</p>
+            <h2>No orders yet</h2>
+            <p>Your placed orders will appear here</p>
+          </div>
+        ) : (
+          orders.map((order) => (
+            <OrderCard key={order._id} order={order} formatDate={formatDate} />
+          ))
+        )}
+
+        {/* ── Pagination ── */}
+        {pagination.pages > 1 && (
+          <div className="ol-pagination">
+            <button
+              className="ol-page-btn"
+              onClick={() => setCurrentPage((p) => p - 1)}
+              disabled={currentPage === 1}
             >
-              <div className="order-header">
-                <div className="order-number">
-                  <span>Order #</span>
-                  <strong>{order.orderNumber}</strong>
-                </div>
-                <div className={`order-status ${getStatusClass(order.status)}`}>
-                  {order.status}
-                </div>
-              </div>
-              
-              <div className="order-info">
-                <div className="order-date">
-                  <span>Ordered on:</span>
-                  <p>{formatDate(order.createdAt)}</p>
-                </div>
-                
-                <div className="order-type">
-                  <span>Type:</span>
-                  <p>{order.orderType}</p>
-                </div>
-                
-                <div className="order-payment">
-                  <span>Payment:</span>
-                  <p>{order.paymentMethod}</p>
-                </div>
-                
-                <div className="order-total">
-                  <span>Total:</span>
-                  <p>${order.total.toFixed(2)}</p>
-                </div>
-              </div>
-              
-              <div className="order-items-preview">
-                <span>{order.items.length} item(s)</span>
-                <p>
-                  {order.items.slice(0, 2).map((item, index) => (
-                    <span key={index}>
-                      {item.quantity}x {item.name}
-                      {index < Math.min(order.items.length, 2) - 1 ? ', ' : ''}
-                    </span>
-                  ))}
-                  {order.items.length > 2 && <span> and {order.items.length - 2} more...</span>}
-                </p>
-              </div>
-              
-              <button className="view-details-btn">View Details</button>
-            </motion.div>
-          ))}
-        </div>
-      )}
-
-      {selectedOrder && (
-        <div className="order-details-overlay">
-          <motion.div 
-            className="order-details-modal"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.3 }}
-          >
-            <button className="close-modal" onClick={closeOrderDetails}>
-              &times;
+              ← Prev
             </button>
-            
-            <div className="order-details-header">
-              <h2>Order Details</h2>
-              <div className={`order-status ${getStatusClass(selectedOrder.status)}`}>
-                {selectedOrder.status}
-              </div>
-            </div>
-            
-            <div className="order-details-info">
-              <div className="detail-group">
-                <span>Order Number:</span>
-                <p>{selectedOrder.orderNumber}</p>
-              </div>
-              
-              <div className="detail-group">
-                <span>Date:</span>
-                <p>{formatDate(selectedOrder.createdAt)}</p>
-              </div>
-              
-              <div className="detail-group">
-                <span>Order Type:</span>
-                <p>{selectedOrder.orderType}</p>
-              </div>
-              
-              <div className="detail-group">
-                <span>Payment Method:</span>
-                <p>{selectedOrder.paymentMethod}</p>
-              </div>
-              
-              {selectedOrder.address && (
-                <div className="detail-group">
-                  <span>Delivery Address:</span>
-                  <p>{selectedOrder.address}</p>
-                </div>
-              )}
-            </div>
-            
-            <div className="order-items-list">
-              <h3>Items</h3>
-              <div className="items-table">
-                <div className="items-header">
-                  <div className="item-name">Item</div>
-                  <div className="item-price">Price</div>
-                  <div className="item-quantity">Qty</div>
-                  <div className="item-total">Total</div>
-                </div>
-                
-                {selectedOrder.items.map((item, index) => (
-                  <div className="item-row" key={index}>
-                    <div className="item-name">
-                      <p>{item.name}</p>
-                      {item.options && item.options.length > 0 && (
-                        <small>
-                          {item.options.map((option, i) => (
-                            <span key={i}>{option}{i < item.options.length - 1 ? ', ' : ''}</span>
-                          ))}
-                        </small>
-                      )}
-                    </div>
-                    <div className="item-price">${item.price.toFixed(2)}</div>
-                    <div className="item-quantity">{item.quantity}</div>
-                    <div className="item-total">${(item.price * item.quantity).toFixed(2)}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            <div className="order-summary">
-              <div className="summary-row">
-                <span>Subtotal:</span>
-                <p>${selectedOrder.subtotal.toFixed(2)}</p>
-              </div>
-              
-              {selectedOrder.deliveryFee > 0 && (
-                <div className="summary-row">
-                  <span>Delivery Fee:</span>
-                  <p>${selectedOrder.deliveryFee.toFixed(2)}</p>
-                </div>
-              )}
-              
-              <div className="summary-row">
-                <span>Tax:</span>
-                <p>${selectedOrder.tax.toFixed(2)}</p>
-              </div>
-              
-              <div className="summary-row total">
-                <span>Total:</span>
-                <p>${selectedOrder.total.toFixed(2)}</p>
-              </div>
-            </div>
-            
-            <div className="order-actions">
-              <button 
-                className="reorder-btn" 
-                onClick={() => handleReorder(selectedOrder)}
-                disabled={loading}
-              >
-                {loading ? 'Processing...' : 'Reorder'}
-              </button>
-              <button className="help-btn" onClick={openHelpModal}>Need Help?</button>
-            </div>
-          </motion.div>
-        </div>
-      )}
-
-      {showHelpModal && (
-        <div className="order-details-overlay">
-          <motion.div 
-            className="help-modal"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.3 }}
-          >
-            <button className="close-modal" onClick={closeHelpModal}>
-              &times;
+            <span className="ol-page-info">{pagination.page} / {pagination.pages}</span>
+            <button
+              className="ol-page-btn"
+              onClick={() => setCurrentPage((p) => p + 1)}
+              disabled={currentPage === pagination.pages}
+            >
+              Next →
             </button>
-            
-            <div className="help-modal-header">
-              <h2>Need Help?</h2>
-            </div>
-            
-            <div className="help-modal-content">
-              <p>If you have any questions or issues with your order, please contact our customer support:</p>
-              
-              <div className="contact-info">
-                <div className="contact-item">
-                  <span>Phone:</span>
-                  <p>+91 1800-123-4567</p>
-                </div>
-                
-                <div className="contact-item">
-                  <span>Email:</span>
-                  <p>support@mcdonaldsclone.com</p>
-                </div>
-                
-                <div className="contact-item">
-                  <span>Hours:</span>
-                  <p>24/7 Customer Support</p>
-                </div>
-              </div>
-              
-              <div className="help-actions">
-                <button className="primary-btn" onClick={closeHelpModal}>Close</button>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      )}
-    </motion.div>
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 
-export default Orders;
+// ─────────────────────────────────────────────────────────────────────────────
+// Order Card
+// ─────────────────────────────────────────────────────────────────────────────
+
+const OrderCard = ({ order, formatDate }) => {
+  const [expanded, setExpanded] = useState(false);
+  const firstItem = order.items[0];
+
+  return (
+    <div className="oc-card">
+
+      {/* Main row */}
+      <div className="oc-main">
+
+        {/* Image */}
+        <div className="oc-img-wrap">
+          <img
+            src={firstItem?.menuItemId?.image?.url}
+            alt={firstItem?.menuItemId?.name}
+            className="oc-img"
+          />
+          {order.items.length > 1 && (
+            <span className="oc-img-extra">+{order.items.length - 1}</span>
+          )}
+        </div>
+
+        {/* Info */}
+        <div className="oc-info">
+          <p className="oc-name">
+            {order.items.map(i => i.menuItemId?.name).join(', ')}
+          </p>
+          <p className="oc-date">{formatDate(order.createdAt)}</p>
+          <div className="oc-badges">
+            <span className={`oc-status status-${order.orderStatus}`}>
+              <span className={`oc-dot dot-${order.orderStatus}`} />
+              {order.orderStatus}
+            </span>
+            <span className="oc-type-badge">{order.orderType}</span>
+          </div>
+        </div>
+
+        {/* Amount */}
+        <div className="oc-amount">
+          <p className="oc-amount-val">₹{order.totalAmount}</p>
+          <p className="oc-order-id">#{order._id.slice(-6).toUpperCase()}</p>
+        </div>
+      </div>
+
+      {/* Toggle */}
+      <button className="oc-toggle" onClick={() => setExpanded(!expanded)}>
+        {expanded ? '▲ Hide details' : '▼ Order details'}
+      </button>
+
+      {/* Expanded Panel */}
+      {expanded && (
+        <div className="oc-panel">
+
+          {/* Items */}
+          <div>
+            <p className="oc-section-label">Items Ordered</p>
+            {order.items.map((item, i) => (
+              <div key={i} className="oc-item-row">
+                <img
+                  src={item.menuItemId?.image?.url}
+                  alt={item.menuItemId?.name}
+                  className="oc-item-img"
+                />
+                <div>
+                  <p className="oc-item-name">{item.menuItemId?.name}</p>
+                  <p className="oc-item-qty">Qty: {item.quantity}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Meta */}
+          <div>
+            <p className="oc-section-label">Order Info</p>
+            <div className="oc-meta-grid">
+              <MetaBox icon="💳" label="Payment Method" value={order.paymentMethod} />
+              <MetaBox icon="📋" label="Payment Status" value={order.paymentStatus} />
+              <MetaBox icon="🍽️" label="Order Type"     value={order.orderType} />
+              <MetaBox icon="📍" label="Address"        value={order.address || 'Dine-In'} />
+            </div>
+          </div>
+
+          {/* Total */}
+          <div className="oc-total">
+            <p className="oc-total-label">Total Paid</p>
+            <p className="oc-total-val">₹{order.totalAmount}</p>
+          </div>
+
+        </div>
+      )}
+    </div>
+  );
+};
+
+// ─── Meta Box ─────────────────────────────────────────────────────────────────
+
+const MetaBox = ({ icon, label, value }) => (
+  <div className="oc-meta-box">
+    <p className="oc-meta-label">{icon} {label}</p>
+    <p className="oc-meta-val">{value}</p>
+  </div>
+);
+
+export default OrdersList;

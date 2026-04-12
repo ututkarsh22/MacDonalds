@@ -8,7 +8,7 @@ export const useCart = () => useContext(CartContext);
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
-  // ✅ Load cart from backend (runs once)
+
   useEffect(() => {
     const loadCart = async () => {
       try {
@@ -29,12 +29,10 @@ export const CartProvider = ({ children }) => {
     loadCart();
   }, []);
 
-  // ✅ Calculate total dynamically (NO state needed)
   const cartTotal = cartItems.reduce((sum, item) => {
     return sum + item.price * item.quantity;
   }, 0);
 
-  // ✅ Sync cart with backend
   const updateCart = async (updatedItems) => {
     try {
       const total = updatedItems.reduce(
@@ -59,7 +57,6 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // ✅ Add item
   const addToCart = (item) => {
     setCartItems(prevItems => {
       let updatedItems;
@@ -75,12 +72,12 @@ export const CartProvider = ({ children }) => {
         toast.success(`${item.name} added`);
       }
 
-      updateCart(updatedItems); // ✅ sync backend
+      updateCart(updatedItems); 
       return updatedItems;
     });
   };
 
-  // ✅ Remove item
+ 
   const removeFromCart = (itemId) => {
     setCartItems(prevItems => {
       const updatedItems = prevItems.filter(item => item._id !== itemId);
@@ -90,7 +87,6 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-  // ✅ Update quantity
   const updateQuantity = (itemId, newQuantity) => {
     setCartItems(prevItems => {
       let updatedItems;
@@ -110,7 +106,6 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-  // ✅ Increment
   const incrementQuantity = (itemId) => {
     setCartItems(prevItems => {
       const updatedItems = prevItems.map(item =>
@@ -124,7 +119,7 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-  // ✅ Decrement
+
   const decrementQuantity = (itemId) => {
     setCartItems(prevItems => {
       let updatedItems;
@@ -146,14 +141,23 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-  // ✅ Clear cart
-  const clearCart = () => {
-    setCartItems([]);
-    updateCart([]);
-    toast.success("Cart cleared");
+
+  const clearCart = async() => {
+    
+    try {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/cart/deleteCart`,{
+        method : "PUT",
+        credentials : "include"
+      })
+      setCartItems([]);
+      updateCart([]);
+      toast.success("Cart cleared");
+    } catch (error) {
+      toast.error("Error in deletingCart",error);
+    }
   };
 
-  // ✅ Derived value
+
   const itemCount = cartItems.reduce((count, item) => count + item.quantity, 0);
 
   const value = {

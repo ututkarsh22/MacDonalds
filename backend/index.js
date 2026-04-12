@@ -48,15 +48,12 @@ app.use('/api/orders', orderRoutes);
 // app.use('/api/payments', paymentRoutes);
 app.use('/api/admin',adminRoutes);
 
-// Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log('MongoDB connected successfully'))
 .catch(err => console.error('MongoDB connection error:', err));
 
-// Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   
-  // Initialize scheduled tasks
   initScheduledTasks();
 });

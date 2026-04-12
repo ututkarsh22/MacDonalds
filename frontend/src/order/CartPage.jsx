@@ -1,18 +1,31 @@
 import React, { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
 import axios from 'axios';
+import { Data } from '@react-google-maps/api';
+import toast from 'react-hot-toast';
+import { redirect } from 'react-router';
 
 const CartPage = () => {
   const { cartItems, totalPrice, clearCart } = useContext(CartContext);
 
   const handlePlaceOrder = async () => {
     try {
-      const response = await axios.post('/api/order', {
-        items: cartItems,
-        total: totalPrice,
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/orders/`, {
+        method : 'POST',
+        credentials : 'include',
+        headers: {
+          "Content-Type": "application/json", 
+        },
+        body: JSON.stringify({   
+          items: cartItems,
+          totalAmount: totalPrice, 
+        }),
       });
-      alert('Order placed successfully!');
+      const data = response.json();
+      console.log( "I am response " ,data);
+      toast.success("Order created successfull");
       clearCart();
+      redirect('/order-success');
     } catch (error) {
       console.error(error);
       alert('Failed to place order.');
@@ -37,7 +50,7 @@ const CartPage = () => {
             onClick={handlePlaceOrder}
             className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600"
           >
-            Place Order
+            Checkout
           </button>
         </div>
       )}

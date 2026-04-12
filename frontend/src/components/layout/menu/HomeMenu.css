@@ -1,300 +1,154 @@
-/* Reset & Base */
-.menu-container {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #fff;
-  padding: 0;
-  margin: 0;
+/* ─── Variables for the Best Sellers Section ─── */
+:root {
+  --primary-orange: #ff8c00;
+  --deep-orange: #f26522;
+  --accent-yellow: #ffbc0d;
+}
+
+/* Container for the child component */
+.best-products-section {
+  /* Using a radial gradient to make the center pop */
+  background: radial-gradient(circle at center, #fff5e6 0%, #ffdfb3 100%);
+  padding: 40px 0;
+  overflow: hidden;
+  text-align: center;
+  border-radius: 30px; /* Matching parent card style */
+  margin-top: 20px;
+}
+
+.section-header {
+  margin-bottom: 30px;
+}
+
+/* Matching parent's Bebas Neue font for titles */
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  color: #1a1a1a;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ─── Horizontal Scroller ─── */
+.horizontal-scroller {
+  display: flex;
+  gap: 25px;
+  padding: 20px 40px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  /* Hide scrollbar but keep functionality */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.horizontal-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+/* ─── Product Card ─── */
+.product-card {
+  min-width: 280px;
+  max-width: 280px;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 25px;
   position: relative;
+  /* Soft orange shadow */
+  box-shadow: 0 10px 30px rgba(242, 101, 34, 0.12);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid rgba(255, 140, 0, 0.1);
+}
+
+.product-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 40px rgba(242, 101, 34, 0.25);
+  border-color: var(--primary-orange);
+}
+
+/* Veg/Non-Veg Badge */
+.card-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--primary-orange);
+  color: #fff;
+  padding: 5px 14px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  z-index: 5;
+}
+
+.image-container {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.image-container img {
+  width: 90%;
+  height: auto;
+  object-fit: contain;
+  /* Gives the burger a 3D depth effect */
+  filter: drop-shadow(0 15px 20px rgba(0,0,0,0.15));
+}
+
+.product-info h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.4rem;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.product-desc {
+  font-size: 13px;
+  color: #777;
+  line-height: 1.4;
+  margin-bottom: 15px;
+  height: 40px;
   overflow: hidden;
 }
 
-/* Arch */
-.mc-arch {
-  position: absolute;
-  top: 0;
-  right: -5%;
-  height: 100%;
-  width: auto;
-  opacity: 0.06;
-  z-index: 0;
-  pointer-events: none;
+.product-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  color: var(--deep-orange);
+  margin-bottom: 15px;
 }
 
-/* Header Tabs */
-.menu-header {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  padding: 2rem 3rem 1rem;
-  font-size: 1rem;
-  font-weight: bold;
-  color: #aaa;
-  z-index: 2;
-  position: relative;
-}
-.menu-header .active {
-  color: red;
-  border-bottom: 3px solid red;
-}
-
-/* Layout */
-.menu-content {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 0 3rem 2rem;
-  gap: 2rem;
-  position: relative;
-  z-index: 2;
-}
-
-.menu-left,
-.menu-right {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  z-index: 2;
-}
-
-.menu-right {
-  align-items: center;
-  text-align: center;
-}
-
-/* Meal Title */
-.meal-title {
-  background: #ffc400;
-  color: #000;
-  font-weight: 800;
-  font-size: 2rem;
-  padding: 1rem 2rem;
-  border-top-right-radius: 50px;
-  width: fit-content;
-  margin-bottom: 1rem;
-}
-
-.meal-sub {
-  font-weight: 600;
-  color: #c8b9a3;
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-}
-
-.meal-desc {
-  font-size: 1rem;
-  color: #333;
-  margin-bottom: 1rem;
-}
-
-.allergens {
-  color: #c00;
-  font-size: 1rem;
-  margin-top: 0.5rem;
-}
-
-/* Nutrition */
-.nutrition-box {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  background: #e60000;
-  color: white;
-  padding: 1rem;
-  border-radius: 50px;
-  margin: 1.5rem 0;
-  width: fit-content;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.nutri-item {
-  min-width: 80px;
-  text-align: center;
-}
-
-.nutri-val {
-  font-size: 1rem;
-  font-weight: bold;
-}
-
-.nutri-key {
-  font-size: 0.75rem;
-}
-
-/* Tabs */
-.meal-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 1rem;
-  z-index: 2;
-  position: relative;
-}
-
-.meal-tab {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: white;
-  border: 2px solid transparent;
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.2s;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-
-.meal-tab.active-tab {
-  border-color: red;
-}
-
-.meal-tab img {
-  width: 36px;
-}
-
-/* Right Panel */
-.meal-main-img {
-  max-width: 300px;
-  width: 100%;
-  margin-bottom: 1rem;
-}
-
-.ingredients-box {
-  background: #fff;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  padding: 1rem;
-  border-radius: 8px;
-  text-align: left;
-}
-
-.ingredients-box h4 {
-  font-weight: bold;
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-}
-
-.ingredients-box p {
-  font-size: 0.95rem;
-  color: #333;
-}
-
-/* Nav Buttons */
-.menu-nav-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin: 1rem 0 3rem;
-  z-index: 2;
-}
-
-.nav-btn {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: none;
-  font-size: 1.3rem;
-  font-weight: bold;
-  cursor: pointer;
-  background: #f2f2f2;
-  color: #111;
-}
-
-.nav-btn.black {
-  background: #000;
+/* ─── Catchy Order Button ─── */
+.order-btn {
+  background: linear-gradient(135deg, var(), var(--deep-orange));
   color: #fff;
-}
-
-/* Details Message */
-.details-message {
-  margin-top: 0.75rem;
-  font-weight: bold;
-  color: green;
-}
-
-/* Menu Buttons */
-.home-menu-buttons {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.view-details, .add-to-cart {
-  flex: 1;
   border: none;
-  padding: 0.6rem 1.2rem;
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-family: 'DM Sans', sans-serif;
   font-size: 1rem;
-  font-weight: bold;
-  border-radius: 8px;
   cursor: pointer;
+  box-shadow: 0 4px 15px rgba(242, 101, 34, 0.3);
   transition: all 0.3s ease;
 }
 
-.view-details {
-  background: #ffbc0d;
-  color: #333;
+.order-btn:hover {
+  box-shadow: 0 6px 20px rgba(242, 101, 34, 0.5);
+  filter: brightness(1.1);
 }
 
-.view-details:hover {
-  background: #e6a800;
-}
-
-.add-to-cart {
-  background: #e60000;
-  color: white;
-}
-
-.add-to-cart:hover {
-  background: #cc0000;
-}
-
-/* Responsive */
-@media screen and (max-width: 768px) {
-  .menu-header {
-    font-size: 0.95rem;
-    justify-content: center;
-    padding: 1rem;
-  }
-
-  .menu-content {
-    flex-direction: column;
-    padding: 1rem;
-  }
-
-  .meal-title {
-    font-size: 1.7rem;
-    padding: 0.75rem 1.5rem;
-  }
-
-  .meal-tabs {
-    justify-content: center;
-  }
-
-  .meal-tab span {
-    display: none;
-  }
-
-  .nutrition-box {
-    flex-direction: column;
-    border-radius: 20px;
-    width: 100%;
-  }
-
-  .meal-main-img {
-    max-width: 260px;
-  }
-
-  .ingredients-box p {
-    max-width: 100%;
-  }
-  
-  .home-menu-buttons {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  .view-details, .add-to-cart {
-    font-size: 0.9rem;
-    padding: 0.5rem 1rem;
-  }
+.scroll-hint {
+  margin-top: 20px;
+  color: var(--deep-orange);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.6;
 }

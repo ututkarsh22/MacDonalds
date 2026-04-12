@@ -1,21 +1,22 @@
 import express from "express";
 const router = express.Router();
 import  authenticateToken  from '../middleware/auth.js';
+import Order from "../models/Order.js";
+import Cart from "../models/Cart.js";
 
-// Create Orderimport express from "express";
 
 router.post("/", authenticateToken, async (req, res) => {
   try {
     const { items, orderType, paymentMethod, address } = req.body;
+    const user = req.user.id;
 
+    console.log("Request",req);
     if (!items || items.length === 0) {
       return res.status(400).json({ message: "Cart is empty" });
     }
-
-    // ✅ Calculate total from backend (IMPORTANT)
-    const totalAmount = items.reduce((sum, item) => {
-      return sum + item.price * item.quantity;
-    }, 0);
+    
+    const itemSummary = await Cart.findOne({userId : user});
+    const totalAmount = itemSummary.total;
 
     const order = await Order.create({
       userId: req.user.id,
@@ -99,6 +100,7 @@ router.get('/:id', authenticateToken, async (req, res) => {
       userId: req.user.id
     }).populate('items.menuItemId');
     
+    console.log("Order",order);
     if (!order) {
       return res.status(404).json({ message: 'Order not found' });
     }

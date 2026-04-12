@@ -58,4 +58,10 @@ router.get("/", authMiddleware, async (req, res) => {
   }
 });
 
+router.put("/delete-cart/:id",authMiddleware,async(req,res) =>{
+
+  const cart = await Cart.findOne({userId : req.user.id});
+
+  console.log(cart);
+})
 export default router;

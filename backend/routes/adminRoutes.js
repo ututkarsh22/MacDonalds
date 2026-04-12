@@ -2,8 +2,9 @@ import express from "express"
 import verifyAdmin from "../middleware/adminAuth.js"
 import multer from "multer";
 import { login,logout,verify, customer, deletingMenu, updatingMenu, createMenu, getMenu } from "../controller/admin.controller.js";
+import upload from "../middleware/multer.js";
 const router = express.Router();
-const upload = multer({dest : "/uploads"})
+
 // Admin login route
 router.post("/login", login);
 

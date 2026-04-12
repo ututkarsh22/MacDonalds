@@ -1,7 +1,5 @@
 import express from "express";
 import User from "../models/User.js";
-import upload from "../middleware/multer.js";
-import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import Product from "../models/Products.js";
 import cloudinary from "../config/cloudinary.js"
@@ -86,7 +84,7 @@ export const deletingMenu = async (req, res) => {
       return res.status(403).json({ message: 'Access denied' });
     }
 
-    const menuItem = await MenuItem.findByIdAndDelete(req.params.id);
+    const menuItem = await Product.findByIdAndDelete(req.params.id);
 
     if (!menuItem) {
       return res.status(404).json({ message: 'Menu item not found' });
@@ -177,7 +175,6 @@ export const createMenu = async (req, res) => {
       );
       stream.end(req.file.buffer);
     });
-    console.log(req.file.path);
     console.log(result);
     const {
       name, description, price, category, isVegetarian, isPopular, stock
